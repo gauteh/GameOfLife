@@ -7,6 +7,6 @@ namespace GameOfLife
 {
     interface I_Regel
     {
-        // Fra Trond. 
+    console.writeline("hei");
     }
 }
