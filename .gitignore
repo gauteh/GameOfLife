@@ -1,0 +1,9 @@
+maintain/
+src/bin/
+src/obj/
+*.swp
+*.exe
+*.pidb
+*.suo
+*.userprefs
+
