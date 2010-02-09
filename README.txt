@@ -25,6 +25,7 @@ push origin master:master
 
 eigen/public branch:
 første gang: git checkout -b branchname origin/branchname
+             git fetch origin branchname:branchname
 
 git pull origin branch:branch
 merge til branch
