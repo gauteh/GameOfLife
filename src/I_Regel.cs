@@ -7,6 +7,6 @@ namespace GameOfLife
 {
     interface I_Regel
     {
-        trond: hei =D
+        // Fra Trond. 
     }
 }
