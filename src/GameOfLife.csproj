@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brett.cs" />
     <Compile Include="I_Regel.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
