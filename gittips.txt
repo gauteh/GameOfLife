@@ -1,0 +1,87 @@
+Her er kanskje dei vanlegaste måtane dåke kjem til å bruk for GIT på:
+
+= Begrep =
+repository - ein kopi av kildekoden og historia (alle comittane)
+
+commit - Ein 'arbeidsbulk' - koden er bygd opp av arbeidsbulkar/endringsbulkar som kjem etter kvarandre. Om du legge alle endringane etter kvarandre får du det bildet av kildekoden som du er på no. Derfor kan du ikkje slette ein sidan alle som kjem etterpå vil kunne være ugyldige.
+
+diff - ein bulk med endringar (er ei fil med + og - for linjer som er fjerna og lagt til)
+
+patch - ein diff med informasjon om kven som har skreve den og ei commitmelding. Om du foreslår ei endring til noke kan du lage ein patch med diff og kommentar, sende den til noken som har bruk for den.
+
+branch - grein, ei linje av endringar basert på ein commit (punkt i historia). det er mogleg å ha paralelle greiner: til dømes om noken har lagt inn sitt arbeid (commitar) på master mens du fortsatt jobber frå det punktet du 'pulla' frå når du begynte. -> nødvendig å 'rebase' før du kan 'merge'.
+
+remote - andre repositories enten på di maskin eller andre. Vi kjem sannsynlegvis til å kun bruke serveren utenom ditt lokale repository.
+
+origin - snarvei til repositoriet på serveren
+
+merge - slå sammen ein branch med ein annan; eventuelt legge ein opppå ein annan.
+
+conflict - om det er endringar som ikkje er kompatible når det blir gjort ein merge
+
+rebase - flytte ein branch sitt startpunkt til punktet du rebaser til. typisk om noken har gjort nytt arbeid sida du starta branchen.
+
+pull - hent og merge dei siste endringane frå ein remote (serveren)
+
+push - send og merge dine siste endringar med ein remote (serveren)
+
+reset - resett kildekoden til eit visst punkt i historia. td. om du vil kaste vekk arbeidet ditt eller ein commit du ikkje vil ha likevel (_men_ ikkje har pusha) og begynne på nytt. kan enten gjerast hard=forandr filene tilbake til orginalt, soft=ta vekk comitten, men la filene være som dei er (nyttig om du vil forandre på comittbeskjeden eller har oppdaga ein feil før du har pusha/merga med master).
+
+checkout - brukast til å skifte branch, ELLER du kan checke ut ei fil på nytt for å få den resatt (td om du vil ha ei fil slik den var på eit visst punkt/eller ha den slik den var før du endra på den)
+
+HEAD - peikar til det siste punktet på master
+
+= Vanlig jobb =
+
+* pull (på master) - sync med serveren; få tak i dei siste 
+* branch/switch - lag din arbeidsbranch og skift til den
+* jobb.. add/commit filer
+* jobb.. add/commit filer
+
+når ferdig:
+* switch til master
+* pull - (for å sjekke om noken har gjort noken endringar sidan du begynte)
+
+ingen endringar:
+* merge arbeidsbranch inn på master
+* push - send din oppdaterte master til serveren
+
+nye endringar: (sjå rebase)
+* etter at den nye pull'en på masteren er ferdig
+* switch til arbeidsbranchen
+* rebase arbeidsbranchen på master (git vil no forsøke å legge linja av endringar du har gjort i frå det nyaste punktet på master (HEAD))
+* fiks eventuelle konfliktar i mergen
+* du har no ein arbeidsbranch med utgangspunkt i HEAD
+* fortsett som om det var 'ingen endringar'.
+
+om du er redd for at det skal bli trøbbel kan du lage ein ny branch basert på arbeidsbranchen og rebase den, eller forventar konfliktar:
+* switch til arbeidsbranch
+* checkout/switch til ein ny branch (td. formaster)
+* du er no på 'formaster'
+* rebase på master
+* fiks konflikter
+* som 'ingen endringar:' - switch til master, merge 'formaster' på master
+
+om det skulle gå dårleg har du fortsatt 'arbeidsbranch' som er basert på det orginale punktet.
+
+!! Det er alltid lurt å lage nye branchar når du skal gjere noke, kvar minste ting.. det er sånn git er bygd opp !!
+
+= Gå tilbake til eit vist punkt / RESET =
+Om du vil kaste vekk endringane dine og berre få tilbake korleis ting såg ut på eit visst punkt.
+* Skift til den branchen du vil rette på
+* Velg Show log
+* Høgreklikk på punktet/comitten du vil resette til
+* Velg måte (soft/hard)
+
+!! det kan ofte være nyttig om ting har blitt rotete å ta ein kopi av filene du har endra og legge ein plass, resette og so kopiere tilbake filene du har lagra for so å gjere comitten. !!
+
+
+= Andre branchar =
+Om fleire jobbar på ein spesiell branch (td. to stk jobbar på noko 'eksperimentelt'/nytt som skal inn) kan ein gjere den public (slik øyvind gjorde) og pushe den til serveren. Då kan ein bytte master ut med den når ein pullar og pushar.. det er viktig å _ikkje_ rebase den. sidan dei forskjellige som jobbar vil ha eit forskjellig 'tre' av branchar - og det blir eit helsikes rot. 
+
+Her må ein i so fall 'merge' dei generelle endringane gjort på 'master' inn i den eksperimentelle branchen. Slik at når den eksperimentelle branchen er klar kan ein 'merge' den inn i 'master' igjen.
+
+Det er og mogleg å pushe sin eigen branch til serveren for at andre skal kunne ta ein kik på den. (ein anna måte å gjere dette på er å poste ein 'patch' slik at dei som skal sjå på den berre legg den inn i sitt system og ser på den). ellers må ein sannynlegvis lage ein ny branch for kvar gang det er noko nytt å sjå på (om det har gått lang nok tid).
+
+kan sjå på det når vi får bruk for det..
+
