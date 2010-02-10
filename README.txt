@@ -12,3 +12,10 @@ lag putty public/privatekey -> send openssh public key på email til meg
 
 sett opp remote git+ssh://brukar@eple.thruhere.net/home/gaute/repo/gameoflife.git
 
+Format på ChangeLog:
+
+[dato]  Navn <email>
+  
+  * endring
+  * endring
+

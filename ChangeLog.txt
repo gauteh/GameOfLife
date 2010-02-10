@@ -1,0 +1,5 @@
+2010-01-10 Gaute Hope <eg@gaute.vetsj.com>
+
+	* Sette opp skjellett for klassane
+	* La til README.txt, gittips.txt, ChangeLog.txt, src/*
+
