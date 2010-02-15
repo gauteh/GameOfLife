@@ -1,5 +1,6 @@
-
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace GameOfLife
 {
@@ -14,9 +15,33 @@ namespace GameOfLife
 		private const int HEIGHT = Table.HEIGHT;
 		private const int WIDTH = Table.WIDTH;
 		
-		public Grid ()
+		// dirty forteller om gridden må teiknast på nytt
+		private bool dirty = false;
+		
+		private Table table;
+		
+		public Grid (Table t)
 		{
+			table = t;
 			// Sett opp grid med størrelse HEIGHT * WIDTH
+		}
+		
+		public void Draw (Graphics ge) {
+			// ge er teikneområdet på forma som dåke kan teikne på	
+			Pen p = new Pen(Color.Red);
+			
+			Rectangle r = new Rectangle (5, 5, 40, 40);
+			Brush brsh = new SolidBrush(Color.Red);
+			
+			ge.DrawRectangle (p, r);
+			ge.FillRectangle (brsh, r);
+			
+		}
+		
+		public bool Dirty {
+			get { return dirty; }
+			set { dirty = true; }			
+
 		}
 	}
 }

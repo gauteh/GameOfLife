@@ -20,12 +20,18 @@ namespace GameOfLife
 		
 		private List<int[,]> tables;
 		
+		// Forteller om tabellen har blitt forandra
+		private bool dirty = false;
+		
 		public Table () {
+			tables = new List<int[,]>();
+			
 			// Sett opp tabell
 			tables.Add (new int [HEIGHT, WIDTH]);
 			tables.Add (new int [HEIGHT, WIDTH]);
 			
 			// Sett til 0
+			Console.WriteLine ("Tabell: Fyller tabeller med 0..");
 			foreach (int[,] a in tables) {
 				for (int i = 0; i < HEIGHT; i++) {
 					for (int j = 0; j < WIDTH; j++) {
@@ -33,6 +39,8 @@ namespace GameOfLife
 					}
 				}
 			}
+			
+			dirty = true;
 		}
 		
 		public void Swap () {
@@ -40,6 +48,7 @@ namespace GameOfLife
 			int [,] tmp = tables[0];
 			tables[0] = tables[1];
 			tables[1] = tmp;
+			dirty = true;
 		}
 		
 		public int[,] TableNow {
@@ -48,11 +57,21 @@ namespace GameOfLife
 		
 		public int[,] TableNext {
 			get { return tables[1]; }
-			set { tables[1] = value; }
+			set { 
+				tables[1] = value; 
+				dirty = true;
+			}
 		}
 		
 		public List<int[,]> Tables {
 			get { return tables; }
+		}
+		
+		public bool Dirty {
+			get { return dirty; }
+			set {
+				dirty = true;
+			}
 		}
 
 		// Toggle ei celle i tabellen (ie. ved museklikk)
@@ -66,6 +85,7 @@ namespace GameOfLife
 				tables[0][x,y] = 0;
 				tables[1][x,y] = 0;
 			}
+			dirty = true;
 		}
         
     }
