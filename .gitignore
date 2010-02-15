@@ -6,4 +6,5 @@ src/obj/
 *.pidb
 *.suo
 *.userprefs
+*.resx
 
