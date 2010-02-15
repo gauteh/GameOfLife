@@ -54,6 +54,19 @@ namespace GameOfLife
 		public List<int[,]> Tables {
 			get { return tables; }
 		}
+
+		// Toggle ei celle i tabellen (ie. ved museklikk)
+		// Baserar oss på den gamle tabellen men byttar i begge slik at den
+		// og blir tatt med i neste berekning.
+		public void ToggleCell (int x, int y) {
+			if (tables[0][x,y] == 0) {
+				tables[0][x,y] = 1;
+				tables[1][x,y] = 1;
+			} else {
+				tables[0][x,y] = 0;
+				tables[1][x,y] = 0;
+			}
+		}
         
     }
 }
