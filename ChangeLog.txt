@@ -1,3 +1,13 @@
+2010-01-15 Gaute Hope <eg@gaute.vetsj.com>
+
+	* src/Rule.cs:  Fiks kompileringsfeil i forslaget til Trond
+	* src/Table.cs: Legg inn int[,] tabellar og metodar/properties for å bruke
+									dei.
+
+2010-01-15 Trond K.	Homestad <tkhmandal@hotmail.com>
+
+	* src/Rule.cs: Forslag til regelbereknar
+
 2010-01-10 Gaute Hope <eg@gaute.vetsj.com>
 
 	* Sette opp skjellett for klassane
