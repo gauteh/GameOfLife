@@ -40,7 +40,7 @@ namespace GameOfLife
 		
 		public bool Dirty {
 			get { return dirty; }
-			set { dirty = true; }			
+			set { dirty = value; }			
 
 		}
 	}

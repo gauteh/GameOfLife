@@ -70,7 +70,7 @@ namespace GameOfLife
 		public bool Dirty {
 			get { return dirty; }
 			set {
-				dirty = true;
+				dirty = value;
 			}
 		}
 
