@@ -19,10 +19,17 @@ namespace GameOfLife
         private bool dirty = false;
 
         private Table table;
+        private MainWindow mainwindow;
+        private int gridWidtht;
+        private int gridHeight;
 
-        public Grid (Table t)
+        public Grid (Table t, MainWindow m)
         {
             table = t;
+            mainwindow = m;
+            gridWidtht = m.Size.Width - 20;
+            gridHeight = m.Size.Height - m.Controls.Find("groupControllers", true)[0].Size.Height - 20;
+
             // Sett opp grid med størrelse HEIGHT * WIDTH
         }
 
@@ -30,10 +37,10 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             Pen p = new Pen(Color.Red);
 
-            Rectangle r = new Rectangle (5, 5, 40, 40);
+            Rectangle r = new Rectangle(5, 5, gridWidtht, gridHeight);
             Brush brsh = new SolidBrush(Color.Red);
-
-            ge.DrawRectangle (p, r);
+            ge.DrawRectangle(p,r);
+           // ge.DrawRectangle (p, r);
             ge.FillRectangle (brsh, r);
 
         }

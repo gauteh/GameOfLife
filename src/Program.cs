@@ -29,7 +29,7 @@ namespace GameOfLife
 
             // Lagar Grid
             Console.WriteLine ("Setter opp grid..");
-            Grid grid = new Grid (table);
+            Grid grid = new Grid (table,m);
 
 
             Console.WriteLine ("Main loop");

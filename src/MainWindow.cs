@@ -23,6 +23,11 @@ namespace GameOfLife
             base.OnPaint (e);
             repainted = true;
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
