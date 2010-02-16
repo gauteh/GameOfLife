@@ -17,50 +17,51 @@ namespace GameOfLife
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-			
-			// Lagar MainWindow
-			Console.WriteLine ("Setter opp MainWindow..");
-			MainWindow m = new MainWindow ();
-			m.Show ();
-			
-			// Lagar tabell
-			Console.WriteLine ("Setter opp tabell..");
-			Table table = new Table ();
-			
-			// Lagar Grid
-			Console.WriteLine ("Setter opp grid..");
-			Grid grid = new Grid (table);
-			
-			
-			Console.WriteLine ("Main loop");
-			
-			// Køyrer hovedloopen her slik at vi har kontroll på våre eigne ting og
-			// kan legge inn ekstra ting som regelutrekning osv sjølv som skal gå 
-			// 'parallelt' med oppdateringa av brukargrensesnittet.
-			
-			while (m.Created) {
-				Application.DoEvents (); // Prosesser alle museklikk osv..
-				
-				m.Update (); // Teikn forma på nytt
-				if (m.repainted) grid.Dirty = true;
-				
-				// Teikn grid på nytt dersom tabell er oppdatert
-				if (table.Dirty) grid.Dirty = true;
-				
-				// Teikn grid på nytt om nødvendig
-				if (grid.Dirty) {
-					Console.WriteLine ("Teiknar grid på nytt..");
-					Graphics g = m.CreateGraphics ();
-					grid.Draw (g);
-				}
-				
-				// Resett forandra-status
-				table.Dirty = false;
-				grid.Dirty = false;
-				m.repainted = false;
-			}
-            //Application.Run(new MainWindow());
 
+            // Lagar MainWindow
+            Console.WriteLine ("Setter opp MainWindow..");
+            MainWindow m = new MainWindow ();
+            m.Show ();
+
+            // Lagar tabell
+            Console.WriteLine ("Setter opp tabell..");
+            Table table = new Table ();
+
+            // Lagar Grid
+            Console.WriteLine ("Setter opp grid..");
+            Grid grid = new Grid (table);
+
+
+            Console.WriteLine ("Main loop");
+
+            // Køyrer hovedloopen her slik at vi har kontroll på våre eigne ting og
+            // kan legge inn ekstra ting som regelutrekning osv sjølv som skal gå
+            // 'parallelt' med oppdateringa av brukargrensesnittet.
+
+            while (m.Created) {
+                Application.DoEvents (); // Prosesser alle museklikk osv..
+
+                m.Update (); // Teikn forma på nytt
+                if (m.repainted) grid.Dirty = true;
+
+                // Teikn grid på nytt dersom tabell er oppdatert
+                if (table.Dirty) grid.Dirty = true;
+
+                // Teikn grid på nytt om nødvendig
+                if (grid.Dirty) {
+                    Console.WriteLine ("Teiknar grid på nytt..");
+                    Graphics g = m.CreateGraphics ();
+                    grid.Draw (g);
+                }
+
+                // Resett forandra-status
+                table.Dirty = false;
+                grid.Dirty = false;
+                m.repainted = false;
+            }
+            //Application.Run(new MainWindow());
         }
     }
 }
+
+// vim: set noai sw=4 tw=4 ts=4:

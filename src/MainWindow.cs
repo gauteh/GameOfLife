@@ -11,17 +11,19 @@ namespace GameOfLife
 {
     public partial class MainWindow : Form
     {
-    	// variabel som viser om vi treng å teikne gridden på nytt
-    	public bool repainted = false;
-    	
+        // variabel som viser om vi treng å teikne gridden på nytt
+        public bool repainted = false;
+
         public MainWindow()
         {
             InitializeComponent();
         }
-        
-		protected override void OnPaint (PaintEventArgs e) {
-			base.OnPaint (e);
-			repainted = true;
-		}
+
+        protected override void OnPaint (PaintEventArgs e) {
+            base.OnPaint (e);
+            repainted = true;
+        }
     }
 }
+
+// vim: set noai sw=4 tw=4 ts=4:

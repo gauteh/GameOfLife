@@ -4,6 +4,8 @@
 	* src/Table.cs: Legg inn int[,] tabellar og metodar/properties for å bruke dei.
 	* Legg inn funksjon for å toggle ei celle i tabellen.
 	* Basisoppsett for hovedprogram og teikning på MainWindow.
+	* Sett opp byggefil for NAnt
+	* Fiks tabbar..
 
 2010-01-15 Trond K.	Homestad <tkhmandal@hotmail.com>
 

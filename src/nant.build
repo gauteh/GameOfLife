@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+    Gaute Hope <eg@gaute.vetsj.com> (c) 2010
+
+    Byggefil for NAnt:
+
+    bruk:
+
+      $ nant build    # Bygg prosjektet
+      $ nant run      # Køyr exefil
+      $ nant clean    # Slett genererte filer
+-->
+<project name="GameOfLife" default="build">
+    <property name="basename" value="GameOfLife"/>
+    <property name="debug" value="true"/>
+    <property name="build.dir" value="bin"/>
+
+    <target name="clean" description="cleans build directory">
+        <echo message="Cleaning out GameOfLife.." />
+        <delete dir="${build.dir}" verbose="true" if="${directory::exists(build.dir)}" />
+    </target>
+
+    <target name="debug" depends="clean">
+        <property name="debug" value="true" />
+    </target>
+
+    <target name="release" depends="clean">
+        <property name="debug" value="false" />
+    </target>
+
+    <target name="build">
+        <echo message="Building GameOfLife.." />
+        <mkdir dir="${build.dir}"/>
+        <csc target="winexe" output="${build.dir}/${basename}.exe" debug="${debug}">
+            <sources>
+                <include name="*.cs" />
+            </sources>
+            <references>
+                <include name="System.dll" />
+                <include name="System.Data.dll" />
+                <include name="System.Drawing.dll" />
+                <include name="System.Windows.Forms.dll" />
+                <include name="System.Xml.dll" />
+            </references>
+        </csc>
+    </target>
+
+    <target name="run" depends="build">
+        <echo message="Running GameOfLife.." />
+        <exec program="${basename}.exe" basedir="${build.dir}" />
+    </target>
+</project>
