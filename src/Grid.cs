@@ -37,8 +37,8 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             Pen p = new Pen(Color.Red);
 
-            Rectangle r = new Rectangle(5, 5, gridWidtht, gridHeight);
-            Brush brsh = new SolidBrush(Color.Red);
+            Rectangle r = new Rectangle(6, 6, gridWidtht, gridHeight-18);
+            Brush brsh = new SolidBrush(Color.Transparent);
             ge.DrawRectangle(p,r);
            // ge.DrawRectangle (p, r);
             ge.FillRectangle (brsh, r);
