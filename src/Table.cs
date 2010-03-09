@@ -12,8 +12,8 @@ namespace GameOfLife
         // Alle klassar skal hente desse verdiane frå her; dermed vil vi enkelt kunne
         // utvide det seinare.
 
-        public const int HEIGHT = 50;
-        public const int WIDTH = 80;
+        public const int HEIGHT = 30;
+        public const int WIDTH = 68;
 
         // Liste med tabellar
         // Tabellen vil ha størrelsen int[HØGDE, BREIDDE]
