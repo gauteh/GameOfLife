@@ -36,6 +36,9 @@ namespace GameOfLife
                 for (int i = 0; i < HEIGHT; i++) {
                     for (int j = 0; j < WIDTH; j++) {
                         a[i,j] = 0;
+                        a[0, 0] = 1;
+                        a[0, 1] = 1;
+                        a[1, 0] = 1;
                     }
                 }
             }
