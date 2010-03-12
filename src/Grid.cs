@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace GameOfLife
 {
@@ -20,15 +21,25 @@ namespace GameOfLife
 
         private Table table;
         private MainWindow mainwindow;
-        private int gridWidtht;
+
+        private int gridTop;  // Start i frå toppen
+        private int gridLeft; // Start i frå venstre
+
+        private int gridWidth;
         private int gridHeight;
 
         public Grid (Table t, MainWindow m)
         {
             table = t;
             mainwindow = m;
-            gridWidtht = m.Size.Width - 20;
+            gridWidth = m.Size.Width - 20;
             gridHeight = m.Size.Height - m.Controls.Find("groupControllers", true)[0].Size.Height - 20;
+
+            gridTop = 6;
+            gridLeft = 6;
+
+            // Koblar den lokale funksjonen onClick til gridClickEventen i MainWindow (m)
+            m.gridClickEvent += new MainWindow.gridClickHandler (onClick);
 
             // Sett opp grid med størrelse HEIGHT * WIDTH
         }
@@ -50,14 +61,13 @@ namespace GameOfLife
                     //Rectangle r = new Rectangle(6, 6, gridWidtht, gridHeight - 24);
                     ge.DrawLine(bluepen, pStart, pWidth);
                 }
-                for (int m = 0; m <= 68; m++)
-                    {
+                for (int m = 0; m <= 68; m++) {
                     ge.DrawLine(bluepen, pStart, pHight);
                     y += 10;
                 }
                 y = 6;
                 x += 10;
-            }
+
             //Rectangle b = new Rectangle(6, 6, 10,10);
             /*
                 int x = 6;
@@ -79,10 +89,23 @@ namespace GameOfLife
             //ge.DrawRectangle(redpen,r);
         }
 
+        private void onClick (object sender, System.Windows.Forms.MouseEventArgs e) {
+            Console.WriteLine ("[GRID: Museklikk] Posisjon: " + e.Location.ToString ());
+        }
+
         public bool Dirty {
             get { return dirty; }
             set { dirty = value; }
 
+        }
+
+
+        public System.Drawing.Point Location {
+            get { return new System.Drawing.Point (gridTop, gridLeft); }
+        }
+
+        public System.Drawing.Size Size {
+            get { return new System.Drawing.Size (gridWidth, gridHeight); }
         }
     }
 }
