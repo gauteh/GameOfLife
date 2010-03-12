@@ -142,8 +142,8 @@ namespace GameOfLife
             double diffx = gridWidth / Table.WIDTH;
             double diffy = gridHeight / Table.HEIGHT;
 
-            double x = (e.Location.X - gridLeft) / diffx;
-            double y = (e.Location.Y - gridTop) / diffy;
+            double x = (e.Location.X - gridLeft - (diffx / 2)) / diffx;
+            double y = (e.Location.Y - gridTop - (diffy / 2)) / diffy;
 
             int ix = Convert.ToInt32 (x);
             int iy = Convert.ToInt32 (y);
