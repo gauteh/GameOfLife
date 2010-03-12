@@ -28,10 +28,32 @@ namespace GameOfLife
         private int gridWidth;
         private int gridHeight;
 
+        // GridEventArgs klasse som held informasjon om hvilke rute som vart klikka
+        public class GridEventArgs : EventArgs
+        {
+            // Ruteposisjon
+            public Point Cell;
+            public MouseEventArgs MouseEvent;
+
+            public GridEventArgs(int y, int x, MouseEventArgs mouseevent)
+            {
+                MouseEvent = mouseevent;
+                
+                Cell.Y = y;
+                Cell.X = x;
+            }
+
+            public int X
+            { get { return Cell.X; } }
+
+            public int Y
+            { get { return Cell.Y; } }
+        }
         // gridClick event (om musa blir klikka innafor gridden)
         // http://msdn.microsoft.com/en-us/library/aa645739(VS.71).aspx
         // Lagar ein delegate prototype: denne typen funksjonar kan ta i mot klikk innafor gridden
-        public delegate void gridClickHandler (object sender, MouseEventArgs e);
+        public delegate void gridClickHandler (object sender, GridEventArgs e);
+
 
         // Sjølve eventen som ein må koble seg på med slike funksjonar
         public event gridClickHandler gridClickEvent;
@@ -126,34 +148,36 @@ namespace GameOfLife
             //ge.DrawRectangle(redpen,r);
         
 
+        // Funksjonen som sjekkar om klikket er innafor gridden og sender ut ein ny event i sofall
         private void on_gridClick (object sender, MouseEventArgs e)
         {
             if ((e.Location.X > gridLeft && e.Location.X < (gridLeft + gridWidth)) &&
                (e.Location.Y > gridTop && e.Location.Y < (gridTop + gridWidth)))
             {
-                if (gridClickEvent != null)
-                    gridClickEvent (this, e); // Køyr gridClick event
+                Console.WriteLine ("[GRID: Museklikk] Posisjon: " + e.Location.ToString ());
+
+                double diffx = gridWidth / Table.WIDTH;
+                double diffy = gridHeight / Table.HEIGHT;
+
+                double x = (e.Location.X - gridLeft - (diffx / 2)) / diffx;
+                double y = (e.Location.Y - gridTop - (diffy / 2)) / diffy;
+
+                int ix = Convert.ToInt32 (x);
+                int iy = Convert.ToInt32 (y);
+
+                Console.WriteLine ("[GRID: Museklikk] rute: [" + ix.ToString () + ", " + iy.ToString () + "]");
+                if (ix >= Table.WIDTH || iy >= Table.HEIGHT) {
+                    Console.WriteLine("[GRID: Museklikk] rute utafor tabell!!");
+                } else {
+                    if (gridClickEvent != null)
+                        gridClickEvent(this, new GridEventArgs (iy, ix, e)); // Køyr gridClick event
+                }
             }
         }
 
-        private void onClick (object sender, System.Windows.Forms.MouseEventArgs e) {
-            Console.WriteLine ("[GRID: Museklikk] Posisjon: " + e.Location.ToString ());
-
-            double diffx = gridWidth / Table.WIDTH;
-            double diffy = gridHeight / Table.HEIGHT;
-
-            double x = (e.Location.X - gridLeft - (diffx / 2)) / diffx;
-            double y = (e.Location.Y - gridTop - (diffy / 2)) / diffy;
-
-            int ix = Convert.ToInt32 (x);
-            int iy = Convert.ToInt32 (y);
-
-            Console.WriteLine ("[GRID: Museklikk] rute: [" + ix.ToString () + ", " + iy.ToString () + "]");
-            if (ix >= Table.WIDTH || iy >= Table.HEIGHT) {
-                Console.WriteLine ("[GRID: Museklikk] rute utafor tabell!!");
-            } else {
-                table.ToggleCell (iy, ix);
-            }
+        // Funksjon som snappar opp klikk som er sendt ut av funksjone over; som er innafor gridden.
+        private void onClick (object sender, GridEventArgs e) {
+            table.ToggleCell (e.Y, e.X);
         }
 
         public bool Dirty {
