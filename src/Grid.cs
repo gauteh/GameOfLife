@@ -35,12 +35,31 @@ namespace GameOfLife
 
         public void Draw (Graphics ge) {
             // ge er teikneområdet på forma som dåke kan teikne på
-            Pen p = new Pen(Color.Red);
-            Pen p1 = new Pen(Color.Blue);
+            int x = 6;
+            int y = 6;
+            Pen redpen = new Pen(Color.Red);
+            Pen bluepen = new Pen(Color.Blue);
+            Point pStart = new Point(x, y);
+            Point pWidth = new Point(680, y);
+            Point pHight = new Point(x, 310);
 
-            Rectangle r = new Rectangle(6, 6, gridWidtht, gridHeight-24);
-            Rectangle b = new Rectangle(6, 6, 10,10);
+                for (int n = 0; n <= 31; n++)
+                {
 
+
+                    //Rectangle r = new Rectangle(6, 6, gridWidtht, gridHeight - 24);
+                    ge.DrawLine(bluepen, pStart, pWidth);
+                }
+                for (int m = 0; m <= 68; m++)
+                    {
+                    ge.DrawLine(bluepen, pStart, pHight);
+                    y += 10;
+                }
+                y = 6;
+                x += 10;
+            }
+            //Rectangle b = new Rectangle(6, 6, 10,10);
+            /*
                 int x = 6;
                 int y = 6;
                 for (int m = 0; m < 30; m++)
@@ -54,10 +73,10 @@ namespace GameOfLife
                     x = 6;
                     y += 10;
                 }
-            
+            */
            
             Brush brsh = new SolidBrush(Color.Blue);
-            ge.DrawRectangle(p,r);
+            //ge.DrawRectangle(redpen,r);
         }
 
         public bool Dirty {
