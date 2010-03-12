@@ -59,12 +59,15 @@ namespace GameOfLife
             // Sett opp grid med størrelse HEIGHT * WIDTH
         }
 
-        public void Draw (Graphics ge) {
+        public void Draw(Graphics ge)
+        {
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
             Pen redpen = new Pen(Color.Red);
             Pen bluepen = new Pen(Color.Blue);
+            Brush bluebrsh = new SolidBrush(Color.Blue);
+            /*
             Point pStart = new Point(x, y);
             Point pWidth = new Point(680, y);
             Point pHight = new Point(x, 310);
@@ -76,6 +79,11 @@ namespace GameOfLife
                     //Rectangle r = new Rectangle(6, 6, gridWidtht, gridHeight - 24);
                     ge.DrawLine(bluepen, pStart, pWidth);
                 }
+                for (int m = 0; m <= 68; m++)
+                {
+                    Point pWidth = new Point(680, y);
+                    ge.DrawLine(bluepen, pStart, pHight);
+                    y += 10;
                 for (int m = 0; m <= 68; m++) {
                     ge.DrawLine(bluepen, pStart, pHight);
                     y += 10;
@@ -83,26 +91,34 @@ namespace GameOfLife
                 y = 6;
                 x += 10;
 
-            //Rectangle b = new Rectangle(6, 6, 10,10);
-            /*
-                int x = 6;
-                int y = 6;
-                for (int m = 0; m < 30; m++)
+             */
+            Rectangle b = new Rectangle(6, 6, 10, 10);
+
+            for (int m = 0; m < 30; m++)
+            {
+                for (int n = 0; n < 68; n++)
                 {
-                    for (int n = 0; n < 68; n++)
+                    if (table.TableNow[m,n]==1)
                     {
                         Rectangle a = new Rectangle(x, y, 10, 10);
                         x += 10;
-                        ge.DrawRectangle(p1, a);
+                        ge.FillRectangle(bluebrsh,a);
                     }
-                    x = 6;
-                    y += 10;
+                    else
+                    {
+                        Rectangle a = new Rectangle(x, y, 10, 10);
+                        x += 10;
+                        ge.DrawRectangle(bluepen, a);
+                    }
                 }
-            */
-           
-            Brush brsh = new SolidBrush(Color.Blue);
-            //ge.DrawRectangle(redpen,r);
+                x = 6;
+                y += 10;
+            }
+
         }
+            
+            //ge.DrawRectangle(redpen,r);
+        
 
         private void on_gridClick (object sender, MouseEventArgs e)
         {
