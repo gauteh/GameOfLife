@@ -120,9 +120,9 @@ namespace GameOfLife
              */
             Rectangle b = new Rectangle(6, 6, 10, 10);
 
-            for (int m = 0; m < 30; m++)
+            for (int m = 0; m < Table.HEIGHT; m++)
             {
-                for (int n = 0; n < 68; n++)
+                for (int n = 0; n < Table.WIDTH; n++)
                 {
                     if (table.TableNow[m,n]==1)
                     {
