@@ -31,11 +31,6 @@ namespace GameOfLife
             Console.WriteLine ("Setter opp grid..");
             Grid grid = new Grid (table, m);
 
-            // Konfigurer mainWindow for grid
-            m.gridLocation = grid.Location;
-            m.gridSize = grid.Size;
-
-
             Console.WriteLine ("Main loop");
 
             // Køyrer hovedloopen her slik at vi har kontroll på våre eigne ting og

@@ -28,6 +28,14 @@ namespace GameOfLife
         private int gridWidth;
         private int gridHeight;
 
+        // gridClick event (om musa blir klikka innafor gridden)
+        // http://msdn.microsoft.com/en-us/library/aa645739(VS.71).aspx
+        // Lagar ein delegate prototype: denne typen funksjonar kan ta i mot klikk innafor gridden
+        public delegate void gridClickHandler (object sender, MouseEventArgs e);
+
+        // Sjølve eventen som ein må koble seg på med slike funksjonar
+        public event gridClickHandler gridClickEvent;
+
         public Grid (Table t, MainWindow m)
         {
             table = t;
@@ -38,8 +46,15 @@ namespace GameOfLife
             gridTop = 6;
             gridLeft = 6;
 
-            // Koblar den lokale funksjonen onClick til gridClickEventen i MainWindow (m)
-            m.gridClickEvent += new MainWindow.gridClickHandler (onClick);
+            // Koblar funksjonen on_GridClick til _alle_ museklikk
+            // den sjekkar om den ligg innafor gridden, og lagar eit nytt gridClickEvent
+            // om den er innafor. Denne kan ein koble seg på på samme måte som den her er kobla på
+            // m.gridClickEvent += new gridClickHandler (funksjon) der m er instansen av MainWindow
+            m.MouseClick += new MouseEventHandler (on_gridClick);
+
+            // Koblar den lokale funksjonen onClick til gridClickEventen, den kan fråkoblast
+            // og andre funksjonar kan og koblast på på eit seinare tidspunkt
+            this.gridClickEvent += new gridClickHandler (onClick);
 
             // Sett opp grid med størrelse HEIGHT * WIDTH
         }
@@ -87,6 +102,16 @@ namespace GameOfLife
            
             Brush brsh = new SolidBrush(Color.Blue);
             //ge.DrawRectangle(redpen,r);
+        }
+
+        private void on_gridClick (object sender, MouseEventArgs e)
+        {
+            if ((e.Location.X > gridLeft && e.Location.X < (gridLeft + gridWidth)) &&
+               (e.Location.Y > gridTop && e.Location.Y < (gridTop + gridWidth)))
+            {
+                if (gridClickEvent != null)
+                    gridClickEvent (this, e); // Køyr gridClick event
+            }
         }
 
         private void onClick (object sender, System.Windows.Forms.MouseEventArgs e) {
