@@ -67,6 +67,10 @@ namespace GameOfLife
             Pen redpen = new Pen(Color.Red);
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
+
+            // Ein brush med bakgrunnsfargen til Forma slik at vi kan 'viske' :)
+            Brush cleanbrsh = new SolidBrush (mainwindow.BackColor);
+
             /*
             Point pStart = new Point(x, y);
             Point pWidth = new Point(680, y);
@@ -107,8 +111,10 @@ namespace GameOfLife
                     else
                     {
                         Rectangle a = new Rectangle(x, y, 10, 10);
+                        Rectangle c = new Rectangle (x + 1, y + 1, 9, 9);
                         x += 10;
-                        ge.DrawRectangle(bluepen, a);
+                        ge.DrawRectangle (bluepen, a);
+                        ge.FillRectangle (cleanbrsh, c);
                     }
                 }
                 x = 6;
@@ -132,6 +138,22 @@ namespace GameOfLife
 
         private void onClick (object sender, System.Windows.Forms.MouseEventArgs e) {
             Console.WriteLine ("[GRID: Museklikk] Posisjon: " + e.Location.ToString ());
+
+            double diffx = gridWidth / Table.WIDTH;
+            double diffy = gridHeight / Table.HEIGHT;
+
+            double x = (e.Location.X - gridLeft) / diffx;
+            double y = (e.Location.Y - gridTop) / diffy;
+
+            int ix = Convert.ToInt32 (x);
+            int iy = Convert.ToInt32 (y);
+
+            Console.WriteLine ("[GRID: Museklikk] rute: [" + ix.ToString () + ", " + iy.ToString () + "]");
+            if (ix >= Table.WIDTH || iy >= Table.HEIGHT) {
+                Console.WriteLine ("[GRID: Museklikk] rute utafor tabell!!");
+            } else {
+                table.ToggleCell (iy, ix);
+            }
         }
 
         public bool Dirty {
