@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 
 namespace GameOfLife
 {
@@ -18,47 +19,30 @@ namespace GameOfLife
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Lagar MainWindow
+            // Setter opp MainWindow
             Console.WriteLine ("Setter opp MainWindow..");
             MainWindow m = new MainWindow ();
             m.Show ();
 
-            // Lagar tabell
+            // Setter opp tabell
             Console.WriteLine ("Setter opp tabell..");
             Table table = new Table ();
 
-            // Lagar Grid
+            // Teiknar forma på nytt dersom tabellen blir forandra
+            table.TableChangedEvent += new Table.TableChangedHandler (m.OnTableChanged);
+
+            // Setter opp grid
             Console.WriteLine ("Setter opp grid..");
             Grid grid = new Grid (table, m);
 
+            // Teikn enkeltcelle dersom dei blir forandra i tabellen
+            table.TableCellChangedEvent += new Table.TableCellChangedHandler (grid.DrawCell);
+
+            // Teikn gridden når forma blir teikna
+            m.Paint += new PaintEventHandler (grid.Draw);
+
             Console.WriteLine ("Main loop");
-
-            // Køyrer hovedloopen her slik at vi har kontroll på våre eigne ting og
-            // kan legge inn ekstra ting som regelutrekning osv sjølv som skal gå
-            // 'parallelt' med oppdateringa av brukargrensesnittet.
-
-            while (m.Created) {
-                Application.DoEvents (); // Prosesser alle museklikk osv..
-
-                m.Update (); // Teikn forma på nytt
-                if (m.repainted) grid.Dirty = true;
-
-                // Teikn grid på nytt dersom tabell er oppdatert
-                if (table.Dirty) grid.Dirty = true;
-
-                // Teikn grid på nytt om nødvendig
-                if (grid.Dirty) {
-                    Console.WriteLine ("Teiknar grid på nytt..");
-                    Graphics g = m.CreateGraphics ();
-                    grid.Draw (g);
-                }
-
-                // Resett forandra-status
-                table.Dirty = false;
-                grid.Dirty = false;
-                m.repainted = false;
-            }
-            //Application.Run(new MainWindow());
+            Application.Run(m);
         }
     }
 }

@@ -22,7 +22,11 @@ namespace GameOfLife
 
         protected override void OnPaint (PaintEventArgs e) {
             base.OnPaint (e);
-            repainted = true;
+        }
+
+        public void OnTableChanged () {
+            // Invalider forma slik at grid blir teikna på nytt
+            this.Invalidate ();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

@@ -16,9 +16,6 @@ namespace GameOfLife
         private const int HEIGHT = Table.HEIGHT;
         private const int WIDTH = Table.WIDTH;
 
-        // dirty forteller om gridden må teiknast på nytt
-        private bool dirty = false;
-
         private Table table;
         private MainWindow mainwindow;
 
@@ -38,7 +35,7 @@ namespace GameOfLife
             public GridEventArgs(int y, int x, MouseEventArgs mouseevent)
             {
                 MouseEvent = mouseevent;
-                
+
                 Cell.Y = y;
                 Cell.X = x;
             }
@@ -54,9 +51,12 @@ namespace GameOfLife
         // Lagar ein delegate prototype: denne typen funksjonar kan ta i mot klikk innafor gridden
         public delegate void gridClickHandler (object sender, GridEventArgs e);
 
-
         // Sjølve eventen som ein må koble seg på med slike funksjonar
         public event gridClickHandler gridClickEvent;
+
+        // Event for når grid eller noke grid er avhengig av (tabell) er forandra og må oppdaterast
+        public delegate void gridDirtyHandler ();
+        public event gridDirtyHandler gridDirtyEvent;
 
         public Grid (Table t, MainWindow m)
         {
@@ -81,8 +81,9 @@ namespace GameOfLife
             // Sett opp grid med størrelse HEIGHT * WIDTH
         }
 
-        public void Draw(Graphics ge)
+        public void Draw(object sender, PaintEventArgs e)
         {
+            Graphics ge = e.Graphics;
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
@@ -144,9 +145,37 @@ namespace GameOfLife
             }
 
         }
-            
-            //ge.DrawRectangle(redpen,r);
-        
+
+        // Teikn enkeltcelle, blir køyrd på TableCellChanged eventen
+        public void DrawCell (int y, int x) {
+            Graphics ge = mainwindow.CreateGraphics ();
+
+            int px, py;
+
+            px = 6 + (x * 10);
+            py = 6 + (y * 10);
+
+            Pen redpen = new Pen(Color.Red);
+            Pen bluepen = new Pen(Color.Blue);
+            Brush bluebrsh = new SolidBrush(Color.Blue);
+
+            // Ein brush med bakgrunnsfargen til Forma slik at vi kan 'viske' :)
+            Brush cleanbrsh = new SolidBrush (mainwindow.BackColor);
+
+            if (table.TableNow[y,x] == 1)
+            {
+                Rectangle a = new Rectangle(px, py, 10, 10);
+                ge.FillRectangle(bluebrsh,a);
+             }
+             else
+             {
+                Rectangle a = new Rectangle(px, py, 10, 10);
+                Rectangle c = new Rectangle (px + 1, py + 1, 9, 9);
+                ge.DrawRectangle (bluepen, a);
+                ge.FillRectangle (cleanbrsh, c);
+             }
+        }
+
 
         // Funksjonen som sjekkar om klikket er innafor gridden og sender ut ein ny event i sofall
         private void on_gridClick (object sender, MouseEventArgs e)
@@ -179,13 +208,6 @@ namespace GameOfLife
         private void onClick (object sender, GridEventArgs e) {
             table.ToggleCell (e.Y, e.X);
         }
-
-        public bool Dirty {
-            get { return dirty; }
-            set { dirty = value; }
-
-        }
-
 
         public System.Drawing.Point Location {
             get { return new System.Drawing.Point (gridTop, gridLeft); }

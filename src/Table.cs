@@ -20,8 +20,14 @@ namespace GameOfLife
 
         private List<int[,]> tables;
 
-        // Forteller om tabellen har blitt forandra
-        private bool dirty = false;
+        // TableChanged event, når tabellen har endra seg får Grid beskjed
+        public delegate void TableChangedHandler ();
+        public event TableChangedHandler TableChangedEvent;
+
+        // TableCellChanged event, når ei celle har forandra seg
+        // Ungår å måtte teikne heile gridden på nytt
+        public delegate void TableCellChangedHandler (int y, int x);
+        public event TableCellChangedHandler TableCellChangedEvent;
 
         public Table () {
             tables = new List<int[,]>();
@@ -36,12 +42,12 @@ namespace GameOfLife
                 for (int i = 0; i < HEIGHT; i++) {
                     for (int j = 0; j < WIDTH; j++) {
                         a[i,j] = 0;
-                       
+
                     }
                 }
             }
 
-            dirty = true;
+            Changed ();
         }
 
         public void Swap () {
@@ -49,7 +55,7 @@ namespace GameOfLife
             int [,] tmp = tables[0];
             tables[0] = tables[1];
             tables[1] = tmp;
-            dirty = true;
+            Changed ();
         }
 
         public int[,] TableNow {
@@ -60,7 +66,7 @@ namespace GameOfLife
             get { return tables[1]; }
             set {
                 tables[1] = value;
-                dirty = true;
+                Changed ();
             }
         }
 
@@ -68,25 +74,28 @@ namespace GameOfLife
             get { return tables; }
         }
 
-        public bool Dirty {
-            get { return dirty; }
-            set {
-                dirty = value;
-            }
+        private void Changed () {
+            // Send TableChangedEvent
+            if (TableChangedEvent != null)
+                TableChangedEvent ();
         }
+
 
         // Toggle ei celle i tabellen (ie. ved museklikk)
         // Baserar oss på den gamle tabellen men byttar i begge slik at den
         // og blir tatt med i neste berekning.
-        public void ToggleCell (int x, int y) {
-            if (tables[0][x,y] == 0) {
-                tables[0][x,y] = 1;
-                tables[1][x,y] = 1;
+        public void ToggleCell (int y, int x) {
+            if (tables[0][y,x] == 0) {
+                tables[0][y,x] = 1;
+                tables[1][y,x] = 1;
             } else {
-                tables[0][x,y] = 0;
-                tables[1][x,y] = 0;
+                tables[0][y,x] = 0;
+                tables[1][y,x] = 0;
             }
-            dirty = true;
+
+            if (TableCellChangedEvent != null)
+                TableCellChangedEvent (y, x);
+
         }
 
     }
