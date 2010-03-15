@@ -15,6 +15,7 @@ namespace GameOfLife
         public Table table;
         public Grid grid;
         public Rule rule;
+        
 
         public MainWindow()
         {
@@ -24,6 +25,7 @@ namespace GameOfLife
             Console.WriteLine ("Setter opp tabell..");
             table = new Table ();
 
+            
             // Teiknar forma på nytt dersom tabellen blir forandra
             table.TableChangedEvent += new Table.TableChangedHandler (this.OnTableChanged);
 
@@ -37,8 +39,6 @@ namespace GameOfLife
             // Teikn gridden når forma blir teikna
             this.Paint += new PaintEventHandler (grid.Draw);
 
-            // Sett opp regel
-            rule = new Rule();
         }
 
         public void OnTableChanged () {
@@ -57,8 +57,9 @@ namespace GameOfLife
             table.RuleIteration();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnClear_click(object sender, EventArgs e)
         {
+          
             table.Clear();
         }
     }

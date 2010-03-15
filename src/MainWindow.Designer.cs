@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupControllers = new System.Windows.Forms.GroupBox();
-            this.btnStep = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnStep = new System.Windows.Forms.Button();
             this.groupControllers.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,16 @@
             this.groupControllers.Text = "Kontrollera";
             this.groupControllers.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(488, 19);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(84, 32);
+            this.btnClear.TabIndex = 1;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_click);
+            // 
             // btnStep
             // 
             this.btnStep.Location = new System.Drawing.Point(597, 19);
@@ -55,16 +65,6 @@
             this.btnStep.Text = "Step";
             this.btnStep.UseVisualStyleBackColor = true;
             this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(488, 19);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(84, 32);
-            this.btnClear.TabIndex = 1;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainWindow
             // 
