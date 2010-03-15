@@ -56,6 +56,11 @@ namespace GameOfLife
             // Køyr regelen ein iterasjon
             table.RuleIteration();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            table.Clear();
+        }
     }
 }
 
