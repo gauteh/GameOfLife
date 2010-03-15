@@ -13,7 +13,16 @@ namespace GameOfLife
         {
         }
 
-        public void ApplyRule (ref List<int[,]> tables)
+        public int[,] CopyCells (int [,] cells) {
+            int [,] copy = new int[Table.HEIGHT, Table.WIDTH];
+            for (int i = 0; i < Table.HEIGHT; i++)
+                for (int j = 0; j < Table.WIDTH; j++)
+                    copy[i,j] = cells[i,j];
+
+            return copy;
+        }
+
+        public void ApplyRule (Table table)
         {
             Console.WriteLine("[Rule] - ConwayRule");
 
@@ -22,6 +31,9 @@ namespace GameOfLife
             int B = 0; // B, kolonne. 0,0 - 0 , 1 = 0, b - 0, b+1
             int kol = Table.WIDTH-1;
             int rad = Table.HEIGHT-1;
+
+            // Lag ein kopi av tabellen som ikkje foranrar seg
+            int [,] cells = CopyCells (table.Cells);
 
             int nabo = 0;
 
@@ -40,21 +52,21 @@ namespace GameOfLife
                     if (!((A+1) > rad || (A-1) < 0 || (B+1) > kol || (B-1) < 0))
                     {
                         
-                        if (tables[0][A - 1, B - 1] != 0)
+                        if (cells[A - 1, B - 1] != 0)
                             nabo++;
-                        if (tables[0][A - 1, B] != 0)
+                        if (cells[A - 1, B] != 0)
                             nabo++;
-                        if (tables[0][A - 1, B + 1] != 0)
+                        if (cells[A - 1, B + 1] != 0)
                             nabo++;
-                        if (tables[0][A, B - 1] != 0)
+                        if (cells[A, B - 1] != 0)
                             nabo++;
-                        if (tables[0][A, B + 1] != 0) // hopper jo over A,B.
+                        if (cells[A, B + 1] != 0) // hopper jo over A,B.
                             nabo++;
-                        if (tables[0][A + 1, B - 1] != 0)
+                        if (cells[A + 1, B - 1] != 0)
                             nabo++;
-                        if (tables[0][A + 1, B] != 0)
+                        if (cells[A + 1, B] != 0)
                             nabo++;
-                        if (tables[0][A + 1, B + 1] != 0)
+                        if (cells[A + 1, B + 1] != 0)
                             nabo++;
                          
                     } // slutt if\else
@@ -64,17 +76,17 @@ namespace GameOfLife
                     // og leve om det er 2,3.
                     // Hvis det er tom celle skal det bli ny celle ved at det er 3 naboer.
                     
-                    if (tables[0][A, B] != 0) // lever celle i A,B.
+                    if (cells[A, B] != 0) // lever celle i A,B.
                     {
                         if (nabo == 2 || nabo == 3) // leve
-                            tables[1][A, B] = 1;
+                            table.SetCell (A, B, 1);
                         else                        // dø
-                            tables[1][A, B] = 0;
+                            table.SetCell (A, B, 0);
                     }
                     else
                     {
                         if (nabo == 3)
-                            tables[1][A, B] = 1;
+                            table.SetCell (A, B, 1);
                     }
                     
                     // klar for ny runde...
@@ -84,7 +96,7 @@ namespace GameOfLife
 
         }
 
-        public void TrondRule(ref List<int[,]> tables)
+        public void TrondRule (Table table)
         {
             Console.WriteLine("[Rule] - TrondRule");
 
@@ -95,6 +107,9 @@ namespace GameOfLife
             int rad = Table.HEIGHT - 1;
 
             int nabo = 0;
+
+            // Lag ein kopi av tabellen som ikkje foranrar seg
+            int [,] cells = CopyCells (table.Cells);
 
             for (; A <= rad; A++)
             {
@@ -110,21 +125,21 @@ namespace GameOfLife
                     if (!((A + 1) > rad || (A - 1) < 0 || (B + 1) > kol || (B - 1) < 0))
                     {
 
-                        if (tables[0][A - 1, B - 1] != 0)
+                        if (cells[A - 1, B - 1] != 0)
                             nabo++;
-                        if (tables[0][A - 1, B] != 0)
+                        if (cells[A - 1, B] != 0)
                             nabo++;
-                        if (tables[0][A - 1, B + 1] != 0)
+                        if (cells[A - 1, B + 1] != 0)
                             nabo++;
-                        if (tables[0][A, B - 1] != 0)
+                        if (cells[A, B - 1] != 0)
                             nabo++;
-                        if (tables[0][A, B + 1] != 0) // hopper jo over A,B.
+                        if (cells[A, B + 1] != 0) // hopper jo over A,B.
                             nabo++;
-                        if (tables[0][A + 1, B - 1] != 0)
+                        if (cells[A + 1, B - 1] != 0)
                             nabo++;
-                        if (tables[0][A + 1, B] != 0)
+                        if (cells[A + 1, B] != 0)
                             nabo++;
-                        if (tables[0][A + 1, B + 1] != 0)
+                        if (cells[A + 1, B + 1] != 0)
                             nabo++;
 
                     } // slutt if\else
@@ -135,17 +150,17 @@ namespace GameOfLife
                     // Hvis det er tom celle skal det bli ny celle ved at det er 3 naboer.
 
                         
-                    if (tables[0][A, B] != 0) // lever celle i A,B.
+                    if (cells[A, B] != 0) // lever celle i A,B.
                     {
                         if (nabo == 2 || nabo == 3) // leve
-                            tables[1][A, B] = 1;
+                            table.SetCell (A, B, 1);
                         else                        // dø
-                            tables[1][A, B] = 0;
+                            table.SetCell (A, B, 0);
                     }
                     else
                     {
                         if (nabo == 3)
-                            tables[1][A, B] = 1;
+                            table.SetCell (A, B, 1);
                     }
                     
 

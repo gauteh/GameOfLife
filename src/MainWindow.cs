@@ -55,7 +55,6 @@ namespace GameOfLife
         {
             // Køyr regelen ein iterasjon
             table.RuleIteration();
-            table.Swap();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace GameOfLife
         // Liste med tabellar
         // Tabellen vil ha størrelsen int[HØGDE, BREIDDE]
 
-        private List<int[,]> tables;
+        private int[,] table;
 
         // TableChanged event, når tabellen har endra seg får Grid beskjed
         public delegate void TableChangedHandler ();
@@ -33,11 +33,7 @@ namespace GameOfLife
         public Rule rule;
 
         public Table () {
-            tables = new List<int[,]>();
-
-            // Sett opp tabell
-            tables.Add (new int [HEIGHT, WIDTH]);
-            tables.Add (new int [HEIGHT, WIDTH]);
+            table = new int [HEIGHT, WIDTH];
 
             // Tøm tabell
             Console.WriteLine ("Tabell: Fyller tabeller med 0..");
@@ -47,36 +43,19 @@ namespace GameOfLife
             rule = new Rule();
         }
 
-        public void Swap () {
-            // Kopierer TableNext til TableNow
-            for (int i = 0; i < HEIGHT; i++)
-                for (int j = 0; j < WIDTH; j++)
-                    tables[0][i,j] = tables[1][i,j];
-            Changed ();
-        }
-
         // Tømmer tabellen
         public void Clear () {
              for (int i = 0; i < HEIGHT; i++)
-                for (int j = 0; j < WIDTH; j++) {
-                    tables[0][i,j] = 0;
-                    tables[1][i,j] = 0;
-            }
+                for (int j = 0; j < WIDTH; j++)
+                    table[i,j] = 0;
+
             Changed ();
         }
 
-        public int[,] TableNow {
-            get { return tables[0]; }
+        public int[,] Cells {
+            get { return table; }
         }
 
-        public int[,] TableNext {
-            get { return tables[1]; }
-            set { tables[1] = value; }
-        }
-
-        public List<int[,]> Tables {
-            get { return tables; }
-        }
 
         private void Changed () {
             // Send TableChangedEvent
@@ -87,10 +66,10 @@ namespace GameOfLife
 
         // Toggle ei celle i tabellen (ie. ved museklikk)
         public void ToggleCell (int y, int x) {
-            if (tables[0][y,x] == 0) {
-                tables[0][y,x] = 1;
+            if (table[y,x] == 0) {
+                table[y,x] = 1;
             } else {
-                tables[0][y,x] = 0;
+                table[y,x] = 0;
             }
 
             if (TableCellChangedEvent != null)
@@ -98,9 +77,15 @@ namespace GameOfLife
 
         }
 
+        public void SetCell (int y, int x, int value) {
+            table[y,x] = value;
+            if (TableCellChangedEvent != null)
+                TableCellChangedEvent (y, x);
+        }
+
         public void RuleIteration()
         {
-            rule.ApplyRule(ref tables);
+            rule.ApplyRule(this);
         }
 
     }

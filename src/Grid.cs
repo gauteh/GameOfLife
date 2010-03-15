@@ -120,7 +120,7 @@ namespace GameOfLife
             {
                 for (int n = 0; n < Table.WIDTH; n++)
                 {
-                    if (table.TableNow[m,n]==1)
+                    if (table.Cells[m,n]==1)
                     {
                         Rectangle a = new Rectangle(x, y, 10, 10);
                         x += 10;
@@ -158,7 +158,7 @@ namespace GameOfLife
             // Ein brush med bakgrunnsfargen til Forma slik at vi kan 'viske' :)
             Brush cleanbrsh = new SolidBrush (mainwindow.BackColor);
 
-            if (table.TableNow[y,x] == 1)
+            if (table.Cells[y,x] == 1)
             {
                 Rectangle a = new Rectangle(px, py, 10, 10);
                 ge.FillRectangle(bluebrsh,a);
