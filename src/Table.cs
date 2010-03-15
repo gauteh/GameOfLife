@@ -39,28 +39,29 @@ namespace GameOfLife
             tables.Add (new int [HEIGHT, WIDTH]);
             tables.Add (new int [HEIGHT, WIDTH]);
 
-            // Sett til 0
+            // Tøm tabell
             Console.WriteLine ("Tabell: Fyller tabeller med 0..");
-            foreach (int[,] a in tables) {
-                for (int i = 0; i < HEIGHT; i++) {
-                    for (int j = 0; j < WIDTH; j++) {
-                        a[i,j] = 0;
-
-                    }
-                }
-            }
-
-            Changed ();
+            Clear ();
 
             // Sett opp regel
             rule = new Rule();
         }
 
         public void Swap () {
-            tables[0] = tables[1];
-            
-            // TODO: clear tables[1], den skal genererast på nytt med ApplyRule()
+            // Kopierer TableNext til TableNow
+            for (int i = 0; i < HEIGHT; i++)
+                for (int j = 0; j < WIDTH; j++)
+                    tables[0][i,j] = tables[1][i,j];
+            Changed ();
+        }
 
+        // Tømmer tabellen
+        public void Clear () {
+             for (int i = 0; i < HEIGHT; i++)
+                for (int j = 0; j < WIDTH; j++) {
+                    tables[0][i,j] = 0;
+                    tables[1][i,j] = 0;
+            }
             Changed ();
         }
 

@@ -15,18 +15,7 @@ namespace GameOfLife
 
         public void ApplyRule (ref List<int[,]> tables)
         {
-            // Forslag til regelfunksjon frå Trond
-            Console.WriteLine("[Rule] - ApplyRule");
-
-            // Test, fyller dei tre første rutene
-            /*
-            tables[1][0, 0] = 1;
-            tables[1][0, 1] = 1;
-            tables[1][0, 2] = 1;
-            */
-
-            // Har bytta ut alle tabOrg med tables[0] og alle tabNy med tables[1]
-            // tables er ein referanse til tabellane
+            Console.WriteLine("[Rule] - ConwayRule");
 
             // A og B er kordinatene i et grid.
             int A = 0; // A, rad. 0,0 - 0, 1 = a, 0 - a, 1
@@ -95,20 +84,9 @@ namespace GameOfLife
 
         }
 
-        public void trondRegel(ref List<int[,]> tables)
+        public void TrondRule(ref List<int[,]> tables)
         {
-            // Forslag til regelfunksjon frå Trond
-            Console.WriteLine("[Rule] - ApplyRule");
-
-            // Test, fyller dei tre første rutene
-            /*
-            tables[1][0, 0] = 1;
-            tables[1][0, 1] = 1;
-            tables[1][0, 2] = 1;
-            */
-
-            // Har bytta ut alle tabOrg med tables[0] og alle tabNy med tables[1]
-            // tables er ein referanse til tabellane
+            Console.WriteLine("[Rule] - TrondRule");
 
             // A og B er kordinatene i et grid.
             int A = 0; // A, rad. 
