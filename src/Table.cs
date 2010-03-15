@@ -64,10 +64,7 @@ namespace GameOfLife
 
         public int[,] TableNext {
             get { return tables[1]; }
-            set {
-                tables[1] = value;
-                Changed ();
-            }
+            set { tables[1] = value; }
         }
 
         public List<int[,]> Tables {

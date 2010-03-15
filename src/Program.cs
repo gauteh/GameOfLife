@@ -24,23 +24,6 @@ namespace GameOfLife
             MainWindow m = new MainWindow ();
             m.Show ();
 
-            // Setter opp tabell
-            Console.WriteLine ("Setter opp tabell..");
-            Table table = new Table ();
-
-            // Teiknar forma på nytt dersom tabellen blir forandra
-            table.TableChangedEvent += new Table.TableChangedHandler (m.OnTableChanged);
-
-            // Setter opp grid
-            Console.WriteLine ("Setter opp grid..");
-            Grid grid = new Grid (table, m);
-
-            // Teikn enkeltcelle dersom dei blir forandra i tabellen
-            table.TableCellChangedEvent += new Table.TableCellChangedHandler (grid.DrawCell);
-
-            // Teikn gridden når forma blir teikna
-            m.Paint += new PaintEventHandler (grid.Draw);
-
             Console.WriteLine ("Main loop");
             Application.Run(m);
         }
