@@ -31,20 +31,25 @@ namespace GameOfLife
             // A og B er kordinatene i et grid.
             int A = 0; // A, rad. 0,0 - 0, 1 = a, 0 - a, 1
             int B = 0; // B, kolonne. 0,0 - 0 , 1 = 0, b - 0, b+1
+            int rad = 29;
+            int kol = 67;
 
             int nabo = 0;
 
-            for (; A <= 30;A++ )
+            for (; A <= rad;A++ )
             {
-                // forløkke skal gå igjennom alle radene.
-                for (; B <= 30; B++)
+            // forløkke skal gå igjennom alle radene.
+                B = 0;
+                for (; B <= kol; B++)
                 {
-                    // forløkke skal gå igjennom alle kolonnene.
+                    nabo = 0;
+                // forløkke skal gå igjennom alle kolonnene.
 
                     // Kode skal sjekke alle cellene rundt en celle med kord. A,B.
                     // Og telle opp hvor mange celler det er noe i.
-                    if (!((A+1) > 30 || (A-1) < 0 || (B+1) > 30 || (B-1) < 0))
+                    if (!((A+1) > rad || (A-1) < 0 || (B+1) > kol || (B-1) < 0))
                     {
+                        
                         if (tables[0][A - 1, B - 1] != 0)
                             nabo++;
                         if (tables[0][A - 1, B] != 0)
@@ -61,8 +66,9 @@ namespace GameOfLife
                             nabo++;
                         if (tables[0][A + 1, B + 1] != 0)
                             nabo++;
+                         
                     } // slutt if\else
-
+                    
 
                     // Hvis det er noe i A,B så skal cellen dø om det er 0,1,4-8 celler rundt.
                     // og leve om det er 2,3.
@@ -81,7 +87,7 @@ namespace GameOfLife
                             tables[1][A, B] = 1;
                     }
 
-                    nabo = 0;
+                    
 
                     // klar for ny runde...
 
