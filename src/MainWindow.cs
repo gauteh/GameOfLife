@@ -12,9 +12,9 @@ namespace GameOfLife
 {
     public partial class MainWindow : Form
     {
-        private Table table;
-        private Grid grid;
-        private Rule rule;
+        public Table table;
+        public Grid grid;
+        public Rule rule;
 
         public MainWindow()
         {
@@ -29,13 +29,16 @@ namespace GameOfLife
 
             // Setter opp grid
             Console.WriteLine ("Setter opp grid..");
-            grid = new Grid (table, this);
+            grid = new Grid (this);
 
             // Teikn enkeltcelle dersom dei blir forandra i tabellen
             table.TableCellChangedEvent += new Table.TableCellChangedHandler (grid.DrawCell);
 
             // Teikn gridden når forma blir teikna
             this.Paint += new PaintEventHandler (grid.Draw);
+
+            // Sett opp regel
+            rule = new Rule();
         }
 
         public void OnTableChanged () {
@@ -46,6 +49,13 @@ namespace GameOfLife
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnStep_Click(object sender, EventArgs e)
+        {
+            // Køyr regelen ein iterasjon
+            table.RuleIteration();
+            table.Swap();
         }
     }
 }

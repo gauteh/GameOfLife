@@ -16,7 +16,6 @@ namespace GameOfLife
         private const int HEIGHT = Table.HEIGHT;
         private const int WIDTH = Table.WIDTH;
 
-        private Table table;
         private MainWindow mainwindow;
 
         private int gridTop;  // Start i frå toppen
@@ -54,13 +53,8 @@ namespace GameOfLife
         // Sjølve eventen som ein må koble seg på med slike funksjonar
         public event gridClickHandler gridClickEvent;
 
-        // Event for når grid eller noke grid er avhengig av (tabell) er forandra og må oppdaterast
-        public delegate void gridDirtyHandler ();
-        public event gridDirtyHandler gridDirtyEvent;
-
-        public Grid (Table t, MainWindow m)
+        public Grid (MainWindow m)
         {
-            table = t;
             mainwindow = m;
             gridWidth = m.Size.Width - 20;
             gridHeight = m.Size.Height - m.Controls.Find("groupControllers", true)[0].Size.Height - 20;
@@ -83,6 +77,7 @@ namespace GameOfLife
 
         public void Draw(object sender, PaintEventArgs e)
         {
+            Table table = mainwindow.table;
             Graphics ge = e.Graphics;
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
@@ -148,6 +143,7 @@ namespace GameOfLife
 
         // Teikn enkeltcelle, blir køyrd på TableCellChanged eventen
         public void DrawCell (int y, int x) {
+            Table table = mainwindow.table;
             Graphics ge = mainwindow.CreateGraphics ();
 
             int px, py;
@@ -206,7 +202,7 @@ namespace GameOfLife
 
         // Funksjon som snappar opp klikk som er sendt ut av funksjone over; som er innafor gridden.
         private void onClick (object sender, GridEventArgs e) {
-            table.ToggleCell (e.Y, e.X);
+            mainwindow.table.ToggleCell (e.Y, e.X);
         }
 
         public System.Drawing.Point Location {

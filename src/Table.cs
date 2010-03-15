@@ -29,6 +29,9 @@ namespace GameOfLife
         public delegate void TableCellChangedHandler (int y, int x);
         public event TableCellChangedHandler TableCellChangedEvent;
 
+        // Lar regel være ein del av tabell sidan den treng direkte tilgang
+        public Rule rule;
+
         public Table () {
             tables = new List<int[,]>();
 
@@ -48,13 +51,16 @@ namespace GameOfLife
             }
 
             Changed ();
+
+            // Sett opp regel
+            rule = new Rule();
         }
 
         public void Swap () {
-            // TODO: Optimiser ? Standard måte å gjere dette på ?
-            int [,] tmp = tables[0];
             tables[0] = tables[1];
-            tables[1] = tmp;
+            
+            // TODO: clear tables[1], den skal genererast på nytt med ApplyRule()
+
             Changed ();
         }
 
@@ -79,20 +85,21 @@ namespace GameOfLife
 
 
         // Toggle ei celle i tabellen (ie. ved museklikk)
-        // Baserar oss på den gamle tabellen men byttar i begge slik at den
-        // og blir tatt med i neste berekning.
         public void ToggleCell (int y, int x) {
             if (tables[0][y,x] == 0) {
                 tables[0][y,x] = 1;
-                tables[1][y,x] = 1;
             } else {
                 tables[0][y,x] = 0;
-                tables[1][y,x] = 0;
             }
 
             if (TableCellChangedEvent != null)
                 TableCellChangedEvent (y, x);
 
+        }
+
+        public void RuleIteration()
+        {
+            rule.ApplyRule(ref tables);
         }
 
     }
