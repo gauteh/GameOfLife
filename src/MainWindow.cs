@@ -40,18 +40,20 @@ namespace GameOfLife
             this.Paint += new PaintEventHandler (grid.Draw);
 
             // Timer
-            
             Timer clock;
             clock = new Timer();
             clock.Interval = 300;
-            clock.Start();
+            clock.Start();    
             clock.Tick += new EventHandler(clock_Tick);
-                        
+          
+     
+            // Tooltips
 
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.SetToolTip(this.btnRun, "Starter og stopper");
+           
         }
 
-        
-        
         public void clock_Tick(object sender,EventArgs eArgs)
         {
             if(table.RunCheck)
@@ -95,6 +97,14 @@ namespace GameOfLife
             }
         }
 
+        private void SpeedBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //tenke å ordne slik at vi fikk variere farten 
+        }
+
+        
+
+        
         
     }
 }

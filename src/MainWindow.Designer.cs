@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupControllers = new System.Windows.Forms.GroupBox();
             this.btnRun = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
+            this.SpeedBox = new System.Windows.Forms.ComboBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupControllers.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControllers
             // 
+            this.groupControllers.Controls.Add(this.SpeedBox);
             this.groupControllers.Controls.Add(this.btnRun);
             this.groupControllers.Controls.Add(this.btnClear);
             this.groupControllers.Controls.Add(this.btnStep);
@@ -50,18 +54,17 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(11, 28);
+            this.btnRun.Location = new System.Drawing.Point(11, 19);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.Size = new System.Drawing.Size(84, 32);
             this.btnRun.TabIndex = 1;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
-           
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(488, 19);
+            this.btnClear.Location = new System.Drawing.Point(191, 19);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(84, 32);
             this.btnClear.TabIndex = 1;
@@ -71,13 +74,25 @@
             // 
             // btnStep
             // 
-            this.btnStep.Location = new System.Drawing.Point(597, 19);
+            this.btnStep.Location = new System.Drawing.Point(101, 19);
             this.btnStep.Name = "btnStep";
             this.btnStep.Size = new System.Drawing.Size(84, 32);
             this.btnStep.TabIndex = 0;
             this.btnStep.Text = "Step";
             this.btnStep.UseVisualStyleBackColor = true;
             this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
+            // 
+            // SpeedBox
+            // 
+            this.SpeedBox.FormattingEnabled = true;
+            this.SpeedBox.Items.AddRange(new object[] {
+            "Speed 1",
+            "Speed 2"});
+            this.SpeedBox.Location = new System.Drawing.Point(334, 26);
+            this.SpeedBox.Name = "SpeedBox";
+            this.SpeedBox.Size = new System.Drawing.Size(121, 21);
+            this.SpeedBox.TabIndex = 1;
+            this.SpeedBox.SelectedIndexChanged += new System.EventHandler(this.SpeedBox_SelectedIndexChanged);
             // 
             // MainWindow
             // 
@@ -100,5 +115,7 @@
         private System.Windows.Forms.Button btnStep;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.ComboBox SpeedBox;
+        private System.Windows.Forms.Timer timer1;
     }
 }
