@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupControllers = new System.Windows.Forms.GroupBox();
+            this.btnRun = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
-            this.btnRun = new System.Windows.Forms.Button();
             this.groupControllers.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +47,17 @@
             this.groupControllers.TabStop = false;
             this.groupControllers.Text = "Kontrollera";
             this.groupControllers.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // btnRun
+            // 
+            this.btnRun.Location = new System.Drawing.Point(11, 28);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.TabIndex = 1;
+            this.btnRun.Text = "Run";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+           
             // 
             // btnClear
             // 
@@ -67,16 +78,6 @@
             this.btnStep.Text = "Step";
             this.btnStep.UseVisualStyleBackColor = true;
             this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
-            // 
-            // btnRun
-            // 
-            this.btnRun.Location = new System.Drawing.Point(11, 28);
-            this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(75, 23);
-            this.btnRun.TabIndex = 1;
-            this.btnRun.Text = "Run";
-            this.btnRun.UseVisualStyleBackColor = true;
-            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // MainWindow
             // 

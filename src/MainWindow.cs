@@ -82,12 +82,20 @@ namespace GameOfLife
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            
+
             if (table.RunCheck == true)
+            {
                 table.RunCheck = false;
+                this.btnRun.Text = "Run";
+            }
             else
+            {
                 table.RunCheck = true;
+                this.btnRun.Text = "Stop";
+            }
         }
+
+        
     }
 }
 
