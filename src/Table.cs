@@ -8,6 +8,10 @@ namespace GameOfLife
     // 2D tabell
     public class Table
     {
+        // Timer
+        public bool running = false;
+
+
         // Standardstørrelse på tabell og dermed og Grid
         // Alle klassar skal hente desse verdiane frå her; dermed vil vi enkelt kunne
         // utvide det seinare.
@@ -87,6 +91,13 @@ namespace GameOfLife
         {
             rule.ApplyRule(this);
         }
+
+        public bool RunCheck
+        {
+            get { return running; }
+            set { running = value; }
+        }
+        
 
     }
 }

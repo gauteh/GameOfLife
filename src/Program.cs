@@ -19,6 +19,7 @@ namespace GameOfLife
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            
             // Setter opp MainWindow
             Console.WriteLine ("Setter opp MainWindow..");
             MainWindow m = new MainWindow ();

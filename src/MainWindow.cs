@@ -39,8 +39,25 @@ namespace GameOfLife
             // Teikn gridden når forma blir teikna
             this.Paint += new PaintEventHandler (grid.Draw);
 
+            // Timer
+            
+            Timer clock;
+            clock = new Timer();
+            clock.Interval = 300;
+            clock.Start();
+            clock.Tick += new EventHandler(clock_Tick);
+                        
+
         }
 
+        
+        
+        public void clock_Tick(object sender,EventArgs eArgs)
+        {
+            if(table.RunCheck)
+            table.RuleIteration();
+        }
+            
         public void OnTableChanged () {
             // Invalider forma slik at grid blir teikna på nytt
             this.Invalidate ();
@@ -61,6 +78,15 @@ namespace GameOfLife
         {
           
             table.Clear();
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            
+            if (table.RunCheck == true)
+                table.RunCheck = false;
+            else
+                table.RunCheck = true;
         }
     }
 }

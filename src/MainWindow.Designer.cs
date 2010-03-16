@@ -31,11 +31,13 @@
             this.groupControllers = new System.Windows.Forms.GroupBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
+            this.btnRun = new System.Windows.Forms.Button();
             this.groupControllers.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControllers
             // 
+            this.groupControllers.Controls.Add(this.btnRun);
             this.groupControllers.Controls.Add(this.btnClear);
             this.groupControllers.Controls.Add(this.btnStep);
             this.groupControllers.Location = new System.Drawing.Point(1, 315);
@@ -66,6 +68,16 @@
             this.btnStep.UseVisualStyleBackColor = true;
             this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
             // 
+            // btnRun
+            // 
+            this.btnRun.Location = new System.Drawing.Point(11, 28);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.TabIndex = 1;
+            this.btnRun.Text = "Run";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -86,5 +98,6 @@
         private System.Windows.Forms.GroupBox groupControllers;
         private System.Windows.Forms.Button btnStep;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnRun;
     }
 }
