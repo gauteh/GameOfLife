@@ -68,9 +68,7 @@ namespace GameOfLife
             // m.gridClickEvent += new gridClickHandler (funksjon) der m er instansen av MainWindow
             m.MouseClick += new MouseEventHandler (on_gridClick);
 
-            // Koblar den lokale funksjonen onClick til gridClickEventen, den kan fråkoblast
-            // og andre funksjonar kan og koblast på på eit seinare tidspunkt
-            this.gridClickEvent += new gridClickHandler (onClick);
+            
 
             // Sett opp grid med størrelse HEIGHT * WIDTH
         }
@@ -198,11 +196,6 @@ namespace GameOfLife
                         gridClickEvent(this, new GridEventArgs (iy, ix, e)); // Køyr gridClick event
                 }
             }
-        }
-
-        // Funksjon som snappar opp klikk som er sendt ut av funksjone over; som er innafor gridden.
-        private void onClick (object sender, GridEventArgs e) {
-            mainwindow.table.ToggleCell (e.Y, e.X);
         }
 
         public System.Drawing.Point Location {

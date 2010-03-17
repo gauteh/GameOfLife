@@ -14,6 +14,7 @@ namespace GameOfLife
     {
         public Table table;
         public Grid grid;
+        public Game game;
 
         // Spel i gang
         private bool running = false;
@@ -49,18 +50,26 @@ namespace GameOfLife
             clock.Start();    
             clock.Tick += new EventHandler(clock_Tick);
           
-     
+
+            // Koblar den lokale funksjonen onGridClick til gridClickEventen, den kan fråkoblast
+            // og andre funksjonar kan og koblast på på eit seinare tidspunkt
+            grid.gridClickEvent += new Grid.gridClickHandler (OnGridClick);
+
             // Tooltips
-            // Forslag: Du kan og sette det her i designaren med å berre skrive det inn :)
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(this.btnRun, "Starter og stopper");
+
+            // Setter opp eit nytt spel av typen 'MaxCells'
+            Game = new MaxCells (this);
            
         }
 
         public void clock_Tick(object sender,EventArgs eArgs)
         {
-            if(Running)
-            table.RuleIteration();
+            if(Running) {
+                table.RuleIteration();
+
+            }
         }
             
         public void OnTableChanged () {
@@ -92,6 +101,10 @@ namespace GameOfLife
                 Running = true;
                 this.btnRun.Text = "Stop";
             }
+        }
+
+        private void OnGridClick (object sender, Grid.GridEventArgs e) {
+            if (!Running) table.ToggleCell (e.Y, e.X);
         }
 
         private void SpeedBox_SelectedIndexChanged(object sender, EventArgs e)
