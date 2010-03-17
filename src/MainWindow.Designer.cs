@@ -1,4 +1,4 @@
-﻿namespace GameOfLife
+namespace GameOfLife
 {
     partial class MainWindow
     {
@@ -34,7 +34,6 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
             this.SpeedBox = new System.Windows.Forms.ComboBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupControllers.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +49,6 @@
             this.groupControllers.TabIndex = 0;
             this.groupControllers.TabStop = false;
             this.groupControllers.Text = "Kontrollera";
-            this.groupControllers.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnRun
             // 
@@ -116,6 +114,5 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.ComboBox SpeedBox;
-        private System.Windows.Forms.Timer timer1;
     }
 }

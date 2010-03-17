@@ -8,10 +8,6 @@ namespace GameOfLife
     // 2D tabell
     public class Table
     {
-        // Timer
-        public bool running = false;
-
-
         // Standardstørrelse på tabell og dermed og Grid
         // Alle klassar skal hente desse verdiane frå her; dermed vil vi enkelt kunne
         // utvide det seinare.
@@ -19,10 +15,10 @@ namespace GameOfLife
         public const int HEIGHT = 30;
         public const int WIDTH = 68;
 
-        // Liste med tabellar
+        // Tabell med celle
         // Tabellen vil ha størrelsen int[HØGDE, BREIDDE]
 
-        private int[,] table;
+        private int[,] cells;
 
         // TableChanged event, når tabellen har endra seg får Grid beskjed
         public delegate void TableChangedHandler ();
@@ -37,7 +33,7 @@ namespace GameOfLife
         public Rule rule;
 
         public Table () {
-            table = new int [HEIGHT, WIDTH];
+            cells = new int [HEIGHT, WIDTH];
 
             // Tøm tabell
             Console.WriteLine ("Tabell: Fyller tabeller med 0..");
@@ -51,13 +47,13 @@ namespace GameOfLife
         public void Clear () {
              for (int i = 0; i < HEIGHT; i++)
                 for (int j = 0; j < WIDTH; j++)
-                    table[i,j] = 0;
+                    cells[i,j] = 0;
 
             Changed ();
         }
 
         public int[,] Cells {
-            get { return table; }
+            get { return cells; }
         }
 
 
@@ -70,10 +66,10 @@ namespace GameOfLife
 
         // Toggle ei celle i tabellen (ie. ved museklikk)
         public void ToggleCell (int y, int x) {
-            if (table[y,x] == 0) {
-                table[y,x] = 1;
+            if (cells[y,x] == 0) {
+                cells[y,x] = 1;
             } else {
-                table[y,x] = 0;
+                cells[y,x] = 0;
             }
 
             if (TableCellChangedEvent != null)
@@ -82,7 +78,7 @@ namespace GameOfLife
         }
 
         public void SetCell (int y, int x, int value) {
-            table[y,x] = value;
+            cells[y,x] = value;
             if (TableCellChangedEvent != null)
                 TableCellChangedEvent (y, x);
         }
@@ -91,14 +87,6 @@ namespace GameOfLife
         {
             rule.ApplyRule(this);
         }
-
-        public bool RunCheck
-        {
-            get { return running; }
-            set { running = value; }
-        }
-        
-
     }
 }
 

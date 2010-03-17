@@ -14,8 +14,12 @@ namespace GameOfLife
     {
         public Table table;
         public Grid grid;
-        public Rule rule;
-        
+
+        // Spel i gang
+        private bool running = false;
+
+        // Timer
+        private Timer clock;
 
         public MainWindow()
         {
@@ -39,8 +43,7 @@ namespace GameOfLife
             // Teikn gridden når forma blir teikna
             this.Paint += new PaintEventHandler (grid.Draw);
 
-            // Timer
-            Timer clock;
+
             clock = new Timer();
             clock.Interval = 300;
             clock.Start();    
@@ -48,7 +51,7 @@ namespace GameOfLife
           
      
             // Tooltips
-
+            // Forslag: Du kan og sette det her i designaren med å berre skrive det inn :)
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(this.btnRun, "Starter og stopper");
            
@@ -56,18 +59,13 @@ namespace GameOfLife
 
         public void clock_Tick(object sender,EventArgs eArgs)
         {
-            if(table.RunCheck)
+            if(Running)
             table.RuleIteration();
         }
             
         public void OnTableChanged () {
             // Invalider forma slik at grid blir teikna på nytt
             this.Invalidate ();
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void btnStep_Click(object sender, EventArgs e)
@@ -78,21 +76,20 @@ namespace GameOfLife
 
         private void btnClear_click(object sender, EventArgs e)
         {
-          
             table.Clear();
         }
 
         private void btnRun_Click(object sender, EventArgs e)
         {
 
-            if (table.RunCheck == true)
+            if (Running == true)
             {
-                table.RunCheck = false;
+                Running = false;
                 this.btnRun.Text = "Run";
             }
             else
             {
-                table.RunCheck = true;
+                Running = true;
                 this.btnRun.Text = "Stop";
             }
         }
@@ -102,10 +99,11 @@ namespace GameOfLife
             //tenke å ordne slik at vi fikk variere farten 
         }
 
-        
-
-        
-        
+        public bool Running
+        {
+            get { return running; }
+            set { running = value; }
+        }
     }
 }
 
