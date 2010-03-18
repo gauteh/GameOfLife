@@ -28,17 +28,20 @@ namespace GameOfLife
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupControllers = new System.Windows.Forms.GroupBox();
+            this.labelScore = new System.Windows.Forms.Label();
+            this.SpeedBox = new System.Windows.Forms.ComboBox();
             this.btnRun = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
-            this.SpeedBox = new System.Windows.Forms.ComboBox();
+            this.labelScoreText = new System.Windows.Forms.Label();
             this.groupControllers.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControllers
             // 
+            this.groupControllers.Controls.Add(this.labelScoreText);
+            this.groupControllers.Controls.Add(this.labelScore);
             this.groupControllers.Controls.Add(this.SpeedBox);
             this.groupControllers.Controls.Add(this.btnRun);
             this.groupControllers.Controls.Add(this.btnClear);
@@ -49,6 +52,27 @@ namespace GameOfLife
             this.groupControllers.TabIndex = 0;
             this.groupControllers.TabStop = false;
             this.groupControllers.Text = "Kontrollera";
+            // 
+            // labelScore
+            // 
+            this.labelScore.AutoSize = true;
+            this.labelScore.Location = new System.Drawing.Point(573, 29);
+            this.labelScore.Name = "labelScore";
+            this.labelScore.Size = new System.Drawing.Size(35, 13);
+            this.labelScore.TabIndex = 1;
+            this.labelScore.Text = "Score";
+            // 
+            // SpeedBox
+            // 
+            this.SpeedBox.FormattingEnabled = true;
+            this.SpeedBox.Items.AddRange(new object[] {
+            "Speed 1",
+            "Speed 2"});
+            this.SpeedBox.Location = new System.Drawing.Point(334, 26);
+            this.SpeedBox.Name = "SpeedBox";
+            this.SpeedBox.Size = new System.Drawing.Size(121, 21);
+            this.SpeedBox.TabIndex = 1;
+            this.SpeedBox.SelectedIndexChanged += new System.EventHandler(this.SpeedBox_SelectedIndexChanged);
             // 
             // btnRun
             // 
@@ -77,17 +101,14 @@ namespace GameOfLife
             this.btnStep.Text = "Step";
             this.btnStep.UseVisualStyleBackColor = true;
             // 
-            // SpeedBox
+            // labelScoreText
             // 
-            this.SpeedBox.FormattingEnabled = true;
-            this.SpeedBox.Items.AddRange(new object[] {
-            "Speed 1",
-            "Speed 2"});
-            this.SpeedBox.Location = new System.Drawing.Point(334, 26);
-            this.SpeedBox.Name = "SpeedBox";
-            this.SpeedBox.Size = new System.Drawing.Size(121, 21);
-            this.SpeedBox.TabIndex = 1;
-            this.SpeedBox.SelectedIndexChanged += new System.EventHandler(this.SpeedBox_SelectedIndexChanged);
+            this.labelScoreText.AutoSize = true;
+            this.labelScoreText.Location = new System.Drawing.Point(532, 29);
+            this.labelScoreText.Name = "labelScoreText";
+            this.labelScoreText.Size = new System.Drawing.Size(38, 13);
+            this.labelScoreText.TabIndex = 2;
+            this.labelScoreText.Text = "Score:";
             // 
             // MainWindow
             // 
@@ -100,6 +121,7 @@ namespace GameOfLife
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.groupControllers.ResumeLayout(false);
+            this.groupControllers.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -111,5 +133,7 @@ namespace GameOfLife
         public System.Windows.Forms.Button btnClear;
         public System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.ComboBox SpeedBox;
+        public System.Windows.Forms.Label labelScore;
+        private System.Windows.Forms.Label labelScoreText;
     }
 }

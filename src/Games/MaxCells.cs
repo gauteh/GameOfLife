@@ -143,6 +143,9 @@ namespace GameOfLife
         {
             if (!explained) Explain ();
             if (Running) Iterate();
+           
+            mainwindow.labelScore.Text = Convert.ToString(GetScore());
+            
         }
 
         public override void RunButton(object sender, EventArgs e)
