@@ -50,9 +50,9 @@ namespace GameOfLife
         }
 
         public void Explain () {
+            explained = true;
             MessageBox.Show ("Velg 15 celler, målet er oppnå mest mogleg celler på ein gang og lengst mogleg levetid", "Spel: MaxCells",
                              MessageBoxButtons.OK, MessageBoxIcon.Information);
-            explained = true;
          }
 
         public override int GetScore () {
@@ -106,12 +106,11 @@ namespace GameOfLife
                 if (x > maxcells) maxcells = x;
 
                 if (Finished ()) {
-                    MessageBox.Show ("Yey! Du er ferdig; scoren din er: " + GetScore().ToString () + "\n\nIterasjoner: " + Iterations.ToString () + "\nMax celler: " + maxcells.ToString (),
-                                     "Ferdig!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Running = false;
-
                     mainwindow.btnRun.Enabled = false;
                     mainwindow.btnStep.Enabled = false;
+                    MessageBox.Show ("Yey! Du er ferdig; scoren din er: " + GetScore().ToString () + "\n\nIterasjoner: " + Iterations.ToString () + "\nMax celler: " + maxcells.ToString (),
+                                     "Ferdig!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
