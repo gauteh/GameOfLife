@@ -58,7 +58,6 @@ namespace GameOfLife
             this.btnRun.TabIndex = 1;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
-            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // btnClear
             // 
@@ -68,7 +67,6 @@ namespace GameOfLife
             this.btnClear.TabIndex = 1;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_click);
             // 
             // btnStep
             // 
@@ -78,7 +76,6 @@ namespace GameOfLife
             this.btnStep.TabIndex = 0;
             this.btnStep.Text = "Step";
             this.btnStep.UseVisualStyleBackColor = true;
-            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
             // 
             // SpeedBox
             // 
@@ -110,9 +107,9 @@ namespace GameOfLife
         #endregion
 
         private System.Windows.Forms.GroupBox groupControllers;
-        private System.Windows.Forms.Button btnStep;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnRun;
+        public System.Windows.Forms.Button btnStep;
+        public System.Windows.Forms.Button btnClear;
+        public System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.ComboBox SpeedBox;
     }
 }

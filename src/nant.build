@@ -34,6 +34,7 @@
         <csc target="winexe" output="${build.dir}/${basename}.exe" debug="${debug}">
             <sources>
                 <include name="*.cs" />
+                <include name="Games/*.cs" />
             </sources>
             <references>
                 <include name="System.dll" />

@@ -80,7 +80,6 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
-            Pen redpen = new Pen(Color.Red);
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
 
@@ -112,7 +111,6 @@ namespace GameOfLife
                 x += 10;
 
              */
-            Rectangle b = new Rectangle(6, 6, 10, 10);
 
             for (int m = 0; m < Table.HEIGHT; m++)
             {
@@ -149,7 +147,6 @@ namespace GameOfLife
             px = 6 + (x * 10);
             py = 6 + (y * 10);
 
-            Pen redpen = new Pen(Color.Red);
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
 

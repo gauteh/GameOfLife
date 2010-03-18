@@ -16,9 +16,6 @@ namespace GameOfLife
         public Grid grid;
         public Game game;
 
-        // Spel i gang
-        private bool running = false;
-
         // Timer
         private Timer clock;
 
@@ -48,74 +45,27 @@ namespace GameOfLife
             clock = new Timer();
             clock.Interval = 300;
             clock.Start();    
-            clock.Tick += new EventHandler(clock_Tick);
           
-
-            // Koblar den lokale funksjonen onGridClick til gridClickEventen, den kan fråkoblast
-            // og andre funksjonar kan og koblast på på eit seinare tidspunkt
-            grid.gridClickEvent += new Grid.gridClickHandler (OnGridClick);
-
             // Tooltips
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(this.btnRun, "Starter og stopper");
 
             // Setter opp eit nytt spel av typen 'MaxCells'
-            Game = new MaxCells (this);
-           
+            game = new MaxCells (this);
+            clock.Tick += new EventHandler (game.Tick);
+            btnStep.Click += new EventHandler (game.StepButton);
+            btnRun.Click += new EventHandler (game.RunButton);
+            btnClear.Click += new EventHandler (game.ClearButton);
         }
 
-        public void clock_Tick(object sender,EventArgs eArgs)
-        {
-            if(Running) {
-                table.RuleIteration();
-
-            }
-        }
-            
         public void OnTableChanged () {
             // Invalider forma slik at grid blir teikna på nytt
             this.Invalidate ();
         }
 
-        private void btnStep_Click(object sender, EventArgs e)
-        {
-            // Køyr regelen ein iterasjon
-            table.RuleIteration();
-        }
-
-        private void btnClear_click(object sender, EventArgs e)
-        {
-            table.Clear();
-        }
-
-        private void btnRun_Click(object sender, EventArgs e)
-        {
-
-            if (Running == true)
-            {
-                Running = false;
-                this.btnRun.Text = "Run";
-            }
-            else
-            {
-                Running = true;
-                this.btnRun.Text = "Stop";
-            }
-        }
-
-        private void OnGridClick (object sender, Grid.GridEventArgs e) {
-            if (!Running) table.ToggleCell (e.Y, e.X);
-        }
-
         private void SpeedBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //tenke å ordne slik at vi fikk variere farten 
-        }
-
-        public bool Running
-        {
-            get { return running; }
-            set { running = value; }
         }
     }
 }

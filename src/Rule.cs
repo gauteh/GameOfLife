@@ -13,7 +13,7 @@ namespace GameOfLife
         {
         }
 
-        public int[,] CopyCells (int [,] cells) {
+        public static int[,] CopyCells (int [,] cells) {
             int [,] copy = new int[Table.HEIGHT, Table.WIDTH];
             for (int i = 0; i < Table.HEIGHT; i++)
                 for (int j = 0; j < Table.WIDTH; j++)
