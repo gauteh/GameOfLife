@@ -179,7 +179,10 @@ namespace GameOfLife
             game_ready = false;
             game_started = false;
             game_finished = false;
+
             maxcells = 0;
+            iterations = 0;
+
             mainwindow.table.Clear ();
             mainwindow.btnRun.Text = "Run";
             DisableControls ();
