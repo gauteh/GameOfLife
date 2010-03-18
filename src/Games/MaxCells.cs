@@ -144,6 +144,7 @@ namespace GameOfLife
             Running = false;
             game_ready = false;
             game_started = false;
+            game_finished = false;
             maxcells = 0;
             mainwindow.table.Clear ();
             mainwindow.btnRun.Text = "Run";
