@@ -11,7 +11,7 @@ namespace GameOfLife
              mainwindow = m;
         }
 
-        public abstract bool CheckFinished (Table table);
+        public abstract bool Finished (Table table);
         public abstract int GetScore (Table table);
         public abstract void Iterate ();
     }

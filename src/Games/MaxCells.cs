@@ -15,12 +15,12 @@ namespace GameOfLife
             return 0;
         }
 
-        public override bool CheckFinished (Table table) {
+        public override bool Finished (Table table) {
              return false;
         }
 
         public override void Iterate () {
-            if (!CheckFinished ()) {
+            if (!Finished ()) {
                 mainwindow.table.RuleIteration ();
             }
         }
