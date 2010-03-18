@@ -3,7 +3,18 @@ using System.Windows.Forms;
 
 namespace GameOfLife
 {
-
+    /* MaxCells (av Gaute):
+     *
+     * Ein spelar / Conways reglar
+     *
+     * 1. Du får 15 celler (definert i 'private const int maxinputcells')
+     *    som du må plassere ut.
+     * 2. Velg 'Run'
+     * 3. Spelet køyrer og du får poeng for:
+     *    a.) det største antallet celler som finst på ein gang (x100)
+     *    b.) antall iterasjoner                                (x10)
+     *
+     */
 
     public class MaxCells : Game
     {
@@ -14,10 +25,13 @@ namespace GameOfLife
 
         private const int maxinputcells = 15;
 
-        private int maxcells = 0; // the maxium number of cells that has been present
+        private int maxcells = 0; // maksimale nummer av celler som har
+                                  // vore til stade samtidig
 
         private int[,] ppreviouscells;
         private int[,] previouscells;
+
+        public ConwayRule rule;
 
         public MaxCells (MainWindow m) : base (m)
         {
@@ -31,6 +45,8 @@ namespace GameOfLife
 
             ppreviouscells = null;
             previouscells = null;
+
+            rule = new ConwayRule ();
         }
 
         public void Explain () {
@@ -48,6 +64,13 @@ namespace GameOfLife
                 bool equal = true;
 
                 int [,] cells = mainwindow.table.Cells;
+
+                /* Testar om tabellen er den samme som den var for
+                 * to iterasjonar sidan; alle loopar større enn det
+                 * vil vi ikkje være i stand til å oppdage..
+                 *
+                 * TODO: Litt meir robust test? Om mogleg?
+                 */
 
                 if (ppreviouscells == null) {
                     equal = false;
@@ -76,7 +99,7 @@ namespace GameOfLife
         public override void Iterate () {
             if (game_ready) {
                 iterations++;
-                mainwindow.table.RuleIteration ();
+                rule.ApplyRule (mainwindow.table);
 
                 // update score
                 int x = CountActiveCells (mainwindow.table.Cells);

@@ -29,7 +29,7 @@ namespace GameOfLife
             Console.WriteLine ("Setter opp tabell..");
             table = new Table ();
 
-            
+
             // Teiknar forma på nytt dersom tabellen blir forandra
             table.TableChangedEvent += new Table.TableChangedHandler (this.OnTableChanged);
 
@@ -46,8 +46,8 @@ namespace GameOfLife
 
             clock = new Timer();
             clock.Interval = 300;
-            clock.Start();    
-          
+            clock.Start();
+
             // Tooltips
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(this.btnRun, "Starter og stopper");
@@ -63,7 +63,7 @@ namespace GameOfLife
 
         private void SpeedBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //tenke å ordne slik at vi fikk variere farten 
+            //tenke å ordne slik at vi fikk variere farten
         }
     }
 }

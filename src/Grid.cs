@@ -67,10 +67,6 @@ namespace GameOfLife
             // om den er innafor. Denne kan ein koble seg på på samme måte som den her er kobla på
             // m.gridClickEvent += new gridClickHandler (funksjon) der m er instansen av MainWindow
             m.MouseClick += new MouseEventHandler (on_gridClick);
-
-            
-
-            // Sett opp grid med størrelse HEIGHT * WIDTH
         }
 
         public void Draw(object sender, PaintEventArgs e)
@@ -174,8 +170,6 @@ namespace GameOfLife
             if ((e.Location.X > gridLeft && e.Location.X < (gridLeft + gridWidth)) &&
                (e.Location.Y > gridTop && e.Location.Y < (gridTop + gridWidth)))
             {
-                Console.WriteLine ("[GRID: Museklikk] Posisjon: " + e.Location.ToString ());
-
                 double diffx = gridWidth / Table.WIDTH;
                 double diffy = gridHeight / Table.HEIGHT;
 
@@ -185,13 +179,9 @@ namespace GameOfLife
                 int ix = Convert.ToInt32 (x);
                 int iy = Convert.ToInt32 (y);
 
-                Console.WriteLine ("[GRID: Museklikk] rute: [" + ix.ToString () + ", " + iy.ToString () + "]");
-                if (ix >= Table.WIDTH || iy >= Table.HEIGHT) {
-                    Console.WriteLine("[GRID: Museklikk] rute utafor tabell!!");
-                } else {
+                if (ix < Table.WIDTH || iy < Table.HEIGHT)
                     if (gridClickEvent != null)
-                        gridClickEvent(this, new GridEventArgs (iy, ix, e)); // Køyr gridClick event
-                }
+                        gridClickEvent(this, new GridEventArgs (iy, ix, e));
             }
         }
 

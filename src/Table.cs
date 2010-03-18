@@ -29,18 +29,8 @@ namespace GameOfLife
         public delegate void TableCellChangedHandler (int y, int x);
         public event TableCellChangedHandler TableCellChangedEvent;
 
-        // Lar regel være ein del av tabell sidan den treng direkte tilgang
-        public Rule rule;
-
         public Table () {
             cells = new int [HEIGHT, WIDTH];
-
-            // Tøm tabell
-            Console.WriteLine ("Tabell: Fyller tabeller med 0..");
-            Clear ();
-
-            // Sett opp regel
-            rule = new Rule();
         }
 
         // Tømmer tabellen
@@ -81,11 +71,6 @@ namespace GameOfLife
             cells[y,x] = value;
             if (TableCellChangedEvent != null)
                 TableCellChangedEvent (y, x);
-        }
-
-        public void RuleIteration()
-        {
-            rule.ApplyRule(this);
         }
 
         // Hjelpe funksjon som returnerar ein kopi av ein celletabell
