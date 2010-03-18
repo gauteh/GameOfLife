@@ -16,6 +16,10 @@ namespace GameOfLife
             // Koblar den lokale funksjonen onGridClick til gridClickEventen, den kan fråkoblast
             // og andre funksjonar kan og koblast på på eit seinare tidspunkt
             mainwindow.grid.gridClickEvent += new Grid.gridClickHandler (OnGridClick);
+            mainwindow.clock.Tick += new EventHandler (Tick);
+            mainwindow.btnStep.Click += new EventHandler (StepButton);
+            mainwindow.btnRun.Click += new EventHandler (RunButton);
+            mainwindow.btnClear.Click += new EventHandler (ClearButton);
         }
 
         public abstract bool Finished ();
@@ -52,3 +56,5 @@ namespace GameOfLife
         }
     }
 }
+
+// vim: set noai sw=4 tw=4 ts=4:

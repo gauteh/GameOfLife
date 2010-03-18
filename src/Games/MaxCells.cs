@@ -10,6 +10,7 @@ namespace GameOfLife
         private bool game_ready; // klar til å startast
         private bool game_started; // har blitt starta
         private bool game_finished; // har blitt fullført
+        private bool explained = false; // har vist messagebox med instruksjona
 
         private const int maxinputcells = 15;
 
@@ -20,20 +21,26 @@ namespace GameOfLife
 
         public MaxCells (MainWindow m) : base (m)
         {
-          // Setter opp spel
-          DisableControls ();
+            // Setter opp spel
+            DisableControls ();
 
-          // Fyll inn ruter (sjå OnGridClick)
-          game_ready = false;
-          game_started = false;
-          game_finished = false;
+            // Fyll inn ruter (sjå OnGridClick)
+            game_ready = false;
+            game_started = false;
+            game_finished = false;
 
-          ppreviouscells = null;
-          previouscells = null;
+            ppreviouscells = null;
+            previouscells = null;
         }
 
+        public void Explain () {
+            MessageBox.Show ("Velg 15 celler, målet er oppnå mest mogleg celler på ein gang og lengst mogleg levetid", "Spel: MaxCells",
+                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+            explained = true;
+         }
+
         public override int GetScore () {
-            return maxcells * 100;
+            return (maxcells * 100) + Iterations * 10;
         }
 
         public override bool Finished () {
@@ -43,15 +50,15 @@ namespace GameOfLife
                 int [,] cells = mainwindow.table.Cells;
 
                 if (ppreviouscells == null) {
-                  equal = false;
+                    equal = false;
                 } else {
-                  for (int y = 0; y < Table.HEIGHT; y++)
-                    for (int x = 0; x < Table.WIDTH; x++) {
-                      if (ppreviouscells[y, x] != cells[y, x]) {
-                        equal = false;
-                        break;
-                      }
-                    }
+                    for (int y = 0; y < Table.HEIGHT; y++)
+                        for (int x = 0; x < Table.WIDTH; x++) {
+                            if (ppreviouscells[y, x] != cells[y, x]) {
+                                equal = false;
+                                break;
+                            }
+                        }
                 }
 
                 if (equal) {
@@ -59,8 +66,8 @@ namespace GameOfLife
                 }
 
                 // lag kopi av cellen som eg sjekkar mot ved neste iterasjon
-                if (previouscells != null) ppreviouscells = Rule.CopyCells (previouscells);
-                previouscells = Rule.CopyCells (cells);
+                if (previouscells != null) ppreviouscells = Table.CopyCells (previouscells);
+                previouscells = Table.CopyCells (cells);
             }
 
             return game_finished;
@@ -76,7 +83,8 @@ namespace GameOfLife
                 if (x > maxcells) maxcells = x;
 
                 if (Finished ()) {
-                    MessageBox.Show ("Yey! Du er ferdig; scoren din er: " + GetScore().ToString (), "Ferdig!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show ("Yey! Du er ferdig; scoren din er: " + GetScore().ToString () + "\n\nIterasjoner: " + Iterations.ToString () + "\nMax celler: " + maxcells.ToString (),
+                                     "Ferdig!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Running = false;
 
                     mainwindow.btnRun.Enabled = false;
@@ -111,7 +119,8 @@ namespace GameOfLife
 
         public override void Tick(object sender,EventArgs eArgs)
         {
-            if(Running) Iterate();
+            if (!explained) Explain ();
+            if (Running) Iterate();
         }
 
         public override void RunButton(object sender, EventArgs e)
@@ -124,9 +133,9 @@ namespace GameOfLife
             else
             {
                 if (game_ready) {
-                  Running = true;
-                  game_started = true;
-                  mainwindow.btnRun.Text = "Stop";
+                    Running = true;
+                    game_started = true;
+                    mainwindow.btnRun.Text = "Stop";
                 }
             }
         }
@@ -152,3 +161,5 @@ namespace GameOfLife
         }
     }
 }
+
+// vim: set noai sw=4 tw=4 ts=4:

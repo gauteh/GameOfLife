@@ -13,15 +13,6 @@ namespace GameOfLife
         {
         }
 
-        public static int[,] CopyCells (int [,] cells) {
-            int [,] copy = new int[Table.HEIGHT, Table.WIDTH];
-            for (int i = 0; i < Table.HEIGHT; i++)
-                for (int j = 0; j < Table.WIDTH; j++)
-                    copy[i,j] = cells[i,j];
-
-            return copy;
-        }
-
         public void ApplyRule (Table table)
         {
             Console.WriteLine("[Rule] - ConwayRule");
@@ -33,7 +24,7 @@ namespace GameOfLife
             int rad = Table.HEIGHT-1;
 
             // Lag ein kopi av tabellen som ikkje foranrar seg
-            int [,] cells = CopyCells (table.Cells);
+            int [,] cells = Table.CopyCells (table.Cells);
 
             int nabo = 0;
 
@@ -109,7 +100,7 @@ namespace GameOfLife
             int nabo = 0;
 
             // Lag ein kopi av tabellen som ikkje foranrar seg
-            int [,] cells = CopyCells (table.Cells);
+            int [,] cells = Table.CopyCells (table.Cells);
 
             for (; A <= rad; A++)
             {

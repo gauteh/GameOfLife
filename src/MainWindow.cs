@@ -17,11 +17,13 @@ namespace GameOfLife
         public Game game;
 
         // Timer
-        private Timer clock;
+        public Timer clock;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Text = "Game of Life";
 
             // Setter opp tabell
             Console.WriteLine ("Setter opp tabell..");
@@ -52,10 +54,6 @@ namespace GameOfLife
 
             // Setter opp eit nytt spel av typen 'MaxCells'
             game = new MaxCells (this);
-            clock.Tick += new EventHandler (game.Tick);
-            btnStep.Click += new EventHandler (game.StepButton);
-            btnRun.Click += new EventHandler (game.RunButton);
-            btnClear.Click += new EventHandler (game.ClearButton);
         }
 
         public void OnTableChanged () {
