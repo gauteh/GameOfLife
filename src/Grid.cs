@@ -80,59 +80,39 @@ namespace GameOfLife
             Brush bluebrsh = new SolidBrush(Color.Blue);
 
             // Ein brush med bakgrunnsfargen til Forma slik at vi kan 'viske' :)
-            Brush cleanbrsh = new SolidBrush (mainwindow.BackColor);
+            Brush cleanbrsh = new SolidBrush(mainwindow.BackColor);
 
-            /*
+
             Point pStart = new Point(x, y);
             Point pWidth = new Point(680, y);
-            Point pHight = new Point(x, 310);
-
-                for (int n = 0; n <= 31; n++)
-                {
+            Point pHight = new Point(x, 305);
 
 
-                    //Rectangle r = new Rectangle(6, 6, gridWidtht, gridHeight - 24);
-                    ge.DrawLine(bluepen, pStart, pWidth);
-                }
-                for (int m = 0; m <= 68; m++)
-                {
-                    Point pWidth = new Point(680, y);
-                    ge.DrawLine(bluepen, pStart, pHight);
-                    y += 10;
-                for (int m = 0; m <= 68; m++) {
-                    ge.DrawLine(bluepen, pStart, pHight);
-                    y += 10;
-                }
-                y = 6;
-                x += 10;
-
-             */
-
-            for (int m = 0; m < Table.HEIGHT; m++)
+            for (int m = 0; m <= 68; m++)
             {
-                for (int n = 0; n < Table.WIDTH; n++)
-                {
-                    if (table.Cells[m,n]==1)
-                    {
-                        Rectangle a = new Rectangle(x, y, 10, 10);
-                        x += 10;
-                        ge.FillRectangle(bluebrsh,a);
-                    }
-                    else
-                    {
-                        Rectangle a = new Rectangle(x, y, 10, 10);
-                        Rectangle c = new Rectangle (x + 1, y + 1, 9, 9);
-                        x += 10;
-                        ge.DrawRectangle (bluepen, a);
-                        ge.FillRectangle (cleanbrsh, c);
-                    }
-                }
-                x = 6;
-                y += 10;
+                ge.DrawLine(bluepen, pStart, pHight);
+                pStart.X += 10;
+                pHight.X += 10;
             }
 
-        }
+            pHight.X = 6;
+            pHight.Y = 310;
+            pWidth.X = 685;
+            pWidth.Y = 6;
+            pStart.X = 6;
+            pStart.Y = 6;
 
+
+
+            for (int n = 0; n <= 38; n++)
+            {
+                ge.DrawLine(bluepen, pStart, pWidth);
+                pStart.Y += 10;
+                pWidth.Y += 10;
+            }
+
+
+        }
         // Teikn enkeltcelle, blir køyrd på TableCellChanged eventen
         public void DrawCell (int y, int x) {
             Table table = mainwindow.table;
