@@ -73,6 +73,7 @@ namespace GameOfLife
             // 
             // SpeedBox
             // 
+            this.SpeedBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SpeedBox.FormattingEnabled = true;
             this.SpeedBox.Items.AddRange(new object[] {
             "Speed 1",
