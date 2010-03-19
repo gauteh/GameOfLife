@@ -76,8 +76,12 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
- 
+            int m = 0;
+            int n = 0;
+            int px, py;
 
+            px = 6 + (x * 10);
+            py = 6 + (y * 10);
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
 
@@ -91,22 +95,35 @@ namespace GameOfLife
             Point p1Width = new Point(685, y);
 
 
-            for (int m = 0; m <=Table.WIDTH; m++)
+            for (m = 0; m <= Table.WIDTH; m++)
             {
                 ge.DrawLine(bluepen, pStart, pHight);
                 pStart.X += 10;
                 pHight.X += 10;
             }
-
-            for (int n = 0; n <= Table.HEIGHT; n++)
+            for (n = 0; n <= Table.HEIGHT; n++)
             {
                 ge.DrawLine(bluepen, p1Start, p1Width);
                 p1Start.Y += 10;
                 p1Width.Y += 10;
             }
 
-
+            for (m = 0; m < Table.WIDTH; m++)
+            {
+                for (n = 0; n < Table.HEIGHT; n++)
+                {
+                    if (table.Cells[n, m] == 1)
+                    {
+                        Rectangle c = new Rectangle(px, py, 10, 10);
+                        ge.FillRectangle(bluebrsh, c);
+                    }
+                }
+            }
         }
+               
+                
+            
+    
                  
 
 
