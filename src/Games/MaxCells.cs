@@ -117,7 +117,7 @@ namespace GameOfLife
 
         public override void OnGridClick (object sender, Grid.GridEventArgs e) {
             // Kan kun fylle inn dersom spelet ikkje har blitt starta
-            if (!game_started && !game_ready) {
+            if (!game_started) {
                 mainwindow.table.ToggleCell (e.Y, e.X);
                 if (CountActiveCells (mainwindow.table.Cells) >= maxinputcells) {
                     game_ready = true;
