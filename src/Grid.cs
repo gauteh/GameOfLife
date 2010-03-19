@@ -76,6 +76,8 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
+            int m = 0;
+            int n = 0;
 
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
@@ -85,32 +87,46 @@ namespace GameOfLife
 
 
             Point pStart = new Point(x, y);
-            Point pWidth = new Point(680, y);
+            Point pWidth = new Point(685, y);
             Point pHight = new Point(x, 305);
-
-
-            for (int m = 0; m <= 68; m++)
+            Point p1Start = new Point(x, y);
+            Point p1Width = new Point(685, y);
+            Point p1Hight = new Point(x, 305);
+            /*
+            for (int m = 0; m <=Table.WIDTH; m++)
             {
                 ge.DrawLine(bluepen, pStart, pHight);
                 pStart.X += 10;
                 pHight.X += 10;
             }
 
-            pHight.X = 6;
-            pHight.Y = 310;
-            pWidth.X = 685;
-            pWidth.Y = 6;
-            pStart.X = 6;
-            pStart.Y = 6;
+            Point p1Start = new Point(x, y);
+            Point p1Width = new Point(685, y);
+            Point p1Hight = new Point(x, 305);
 
 
-
-            for (int n = 0; n <= 38; n++)
+            for (int n = 0; n <= Table.HEIGHT; n++)
             {
-                ge.DrawLine(bluepen, pStart, pWidth);
-                pStart.Y += 10;
-                pWidth.Y += 10;
+                ge.DrawLine(bluepen, p1Start, p1Width);
+                p1Start.Y += 10;
+                p1Width.Y += 10;
             }
+            */
+            while (m <= Table.WIDTH || n <= Table.HEIGHT) 
+            {
+                if (table[m, n] == 1)
+                {
+                }
+                ge.DrawLine(bluepen, pStart, pHight);
+                ge.DrawLine(bluepen, p1Start, p1Width);
+                pStart.X += 10;
+                pHight.X += 10;
+                p1Start.Y += 10;
+                p1Width.Y += 10;
+                m++;
+                n++;
+            }
+                 
 
 
 
