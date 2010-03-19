@@ -85,6 +85,7 @@ namespace GameOfLife
 
             for (int m = 0; m < Table.HEIGHT; m++)
             {
+                
                 for (int n = 0; n < Table.WIDTH; n++)
                 {
                     if (table.Cells[m,n]==1)
