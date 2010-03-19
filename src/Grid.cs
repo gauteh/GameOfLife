@@ -76,8 +76,7 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
-            int m = 0;
-            int n = 0;
+ 
 
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
@@ -91,7 +90,7 @@ namespace GameOfLife
             Point p1Start = new Point(x, y);
             Point p1Width = new Point(685, y);
 
-            /*
+
             for (int m = 0; m <=Table.WIDTH; m++)
             {
                 ge.DrawLine(bluepen, pStart, pHight);
@@ -99,49 +98,13 @@ namespace GameOfLife
                 pHight.X += 10;
             }
 
-            Point p1Start = new Point(x, y);
-            Point p1Width = new Point(685, y);
-            Point p1Hight = new Point(x, 305);
-
-
             for (int n = 0; n <= Table.HEIGHT; n++)
             {
                 ge.DrawLine(bluepen, p1Start, p1Width);
                 p1Start.Y += 10;
                 p1Width.Y += 10;
             }
-            */
-            while ((n <= Table.WIDTH))
-            {
-                ge.DrawLine(bluepen, pStart, pHight);
-                pStart.X += 10;
-                pHight.X += 10;
-                n++;
 
-                while ((m <= Table.HEIGHT))
-                {
-                    ge.DrawLine(bluepen, p1Start, p1Width);
-                    p1Start.Y += 10;
-                    p1Width.Y += 10;
-                    m++;
-
-                    if (table.Cells[n,m]==1)
-                     {
-                         Rectangle a = new Rectangle(x, y, 10, 10);
-                         x += 10;
-                         ge.FillRectangle(bluebrsh,a);
-                     }
-                     else
-                     {
-                         Rectangle a = new Rectangle(x, y, 10, 10);
-                         Rectangle c = new Rectangle (x + 1, y + 1, 9, 9);
-                         x += 10;
-                         ge.DrawRectangle (bluepen, a);
-                         ge.FillRectangle (cleanbrsh, c);
-                     }
-                }
- 
-            }
 
         }
                  
