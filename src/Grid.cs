@@ -82,31 +82,6 @@ namespace GameOfLife
             // Ein brush med bakgrunnsfargen til Forma slik at vi kan 'viske' :)
             Brush cleanbrsh = new SolidBrush (mainwindow.BackColor);
 
-            /*
-            Point pStart = new Point(x, y);
-            Point pWidth = new Point(680, y);
-            Point pHight = new Point(x, 310);
-
-                for (int n = 0; n <= 31; n++)
-                {
-
-
-                    //Rectangle r = new Rectangle(6, 6, gridWidtht, gridHeight - 24);
-                    ge.DrawLine(bluepen, pStart, pWidth);
-                }
-                for (int m = 0; m <= 68; m++)
-                {
-                    Point pWidth = new Point(680, y);
-                    ge.DrawLine(bluepen, pStart, pHight);
-                    y += 10;
-                for (int m = 0; m <= 68; m++) {
-                    ge.DrawLine(bluepen, pStart, pHight);
-                    y += 10;
-                }
-                y = 6;
-                x += 10;
-
-             */
 
             for (int m = 0; m < Table.HEIGHT; m++)
             {
