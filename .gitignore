@@ -7,4 +7,6 @@ src/obj/
 *.pidb
 *.suo
 *.userprefs
+*.zip
+*.tar*
 
