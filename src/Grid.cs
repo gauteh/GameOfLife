@@ -87,11 +87,10 @@ namespace GameOfLife
 
 
             Point pStart = new Point(x, y);
-            Point pWidth = new Point(685, y);
             Point pHight = new Point(x, 305);
             Point p1Start = new Point(x, y);
             Point p1Width = new Point(685, y);
-            Point p1Hight = new Point(x, 305);
+
             /*
             for (int m = 0; m <=Table.WIDTH; m++)
             {
@@ -112,25 +111,44 @@ namespace GameOfLife
                 p1Width.Y += 10;
             }
             */
-            while (m <= Table.WIDTH || n <= Table.HEIGHT) 
+            while ((n <= Table.WIDTH))
             {
-                if (table[m, n] == 1)
-                {
-                }
                 ge.DrawLine(bluepen, pStart, pHight);
-                ge.DrawLine(bluepen, p1Start, p1Width);
                 pStart.X += 10;
                 pHight.X += 10;
-                p1Start.Y += 10;
-                p1Width.Y += 10;
-                m++;
                 n++;
+
+                while ((m <= Table.HEIGHT))
+                {
+                    ge.DrawLine(bluepen, p1Start, p1Width);
+                    p1Start.Y += 10;
+                    p1Width.Y += 10;
+                    m++;
+
+                    if (table.Cells[n,m]==1)
+                     {
+                         Rectangle a = new Rectangle(x, y, 10, 10);
+                         x += 10;
+                         ge.FillRectangle(bluebrsh,a);
+                     }
+                     else
+                     {
+                         Rectangle a = new Rectangle(x, y, 10, 10);
+                         Rectangle c = new Rectangle (x + 1, y + 1, 9, 9);
+                         x += 10;
+                         ge.DrawRectangle (bluepen, a);
+                         ge.FillRectangle (cleanbrsh, c);
+                     }
+                }
+ 
             }
+
+        }
                  
 
 
 
-        }
+        
         // Teikn enkeltcelle, blir køyrd på TableCellChanged eventen
         public void DrawCell (int y, int x) {
             Table table = mainwindow.table;
