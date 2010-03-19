@@ -99,15 +99,16 @@ namespace GameOfLife
                     if (table.Cells[m, n] == 1)
                     {                     
                         Rectangle a = new Rectangle(x, y, 10, 10);
-                        ge.FillRectangle(bluebrsh, a);
+                        
                         ge.DrawLine(bluepen, pStart, pHight);
                         ge.DrawLine(bluepen, p1Start, pWidth);
                         x += 10;
+                        ge.FillRectangle(bluebrsh, a);
                     }
                     else
                     {
                         Rectangle c = new Rectangle(x+1, y+1, 9, 9);
-                        ge.FillRectangle(cleanbrsh, c);
+                       
                         ge.DrawLine(bluepen, pStart, pHight);
                         ge.DrawLine(bluepen, p1Start, pWidth);
                         x += 10;
@@ -115,6 +116,7 @@ namespace GameOfLife
                         pHight.X += 10;
                         p1Start.Y += 10;
                         pWidth.Y += 10;
+                        ge.FillRectangle(cleanbrsh, c);
                     }
                     x = 6;
                     y += 10;
