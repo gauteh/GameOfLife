@@ -78,10 +78,7 @@ namespace GameOfLife
             int y = 6;
             int m = 0;
             int n = 0;
-            int px, py;
 
-            px = 6 + (x * 10);
-            py = 6 + (y * 10);
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
 
@@ -90,23 +87,9 @@ namespace GameOfLife
 
 
             Point pStart = new Point(x, y);
-            Point pHight = new Point(x, 305);
             Point p1Start = new Point(x, y);
-            Point p1Width = new Point(685, y);
-
-
-            for (m = 0; m <= Table.WIDTH; m++)
-            {
-                ge.DrawLine(bluepen, pStart, pHight);
-                pStart.X += 10;
-                pHight.X += 10;
-            }
-            for (n = 0; n <= Table.HEIGHT; n++)
-            {
-                ge.DrawLine(bluepen, p1Start, p1Width);
-                p1Start.Y += 10;
-                p1Width.Y += 10;
-            }
+            Point pHight = new Point(x, 305);
+            Point pWidth = new Point(685, y);
 
             for (m = 0; m < Table.HEIGHT; m++)
             {
@@ -114,19 +97,25 @@ namespace GameOfLife
                 {
                     if (table.Cells[m, n] == 1)
                     {
-                        Rectangle a = new Rectangle(pStart.X, p1Start.Y, 10, 10);
+                        Rectangle a = new Rectangle(x, y, 10, 10);
                         x += 10;
                         ge.FillRectangle(bluebrsh, a);
                     }
                     else
                     {
-                        Rectangle c = new Rectangle(pStart.X + 1, p1Start.Y + 1, 9, 9);
-                        x += 10;
-                        ge.FillRectangle(cleanbrsh, c);
+                        ge.DrawLine(bluepen, pStart, pHight);
+                        pStart.X += 10;
+                        pHight.X += 10;
+
+                        ge.DrawLine(bluepen, p1Start, pWidth);
+                        p1Start.Y += 10;
+                        pWidth.Y += 10;
+
                     }
+                    y += 10;
+
+
                 }
-                x = 6;
-                y += 10;
             }
         }
                
