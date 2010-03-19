@@ -29,12 +29,12 @@ namespace GameOfLife
         private void InitializeComponent()
         {
             this.groupControllers = new System.Windows.Forms.GroupBox();
+            this.labelScoreText = new System.Windows.Forms.Label();
             this.labelScore = new System.Windows.Forms.Label();
             this.SpeedBox = new System.Windows.Forms.ComboBox();
             this.btnRun = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
-            this.labelScoreText = new System.Windows.Forms.Label();
             this.groupControllers.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,15 @@ namespace GameOfLife
             this.groupControllers.TabIndex = 0;
             this.groupControllers.TabStop = false;
             this.groupControllers.Text = "Kontrollera";
+            // 
+            // labelScoreText
+            // 
+            this.labelScoreText.AutoSize = true;
+            this.labelScoreText.Location = new System.Drawing.Point(532, 29);
+            this.labelScoreText.Name = "labelScoreText";
+            this.labelScoreText.Size = new System.Drawing.Size(38, 13);
+            this.labelScoreText.TabIndex = 2;
+            this.labelScoreText.Text = "Score:";
             // 
             // labelScore
             // 
@@ -101,15 +110,6 @@ namespace GameOfLife
             this.btnStep.Text = "Step";
             this.btnStep.UseVisualStyleBackColor = true;
             // 
-            // labelScoreText
-            // 
-            this.labelScoreText.AutoSize = true;
-            this.labelScoreText.Location = new System.Drawing.Point(532, 29);
-            this.labelScoreText.Name = "labelScoreText";
-            this.labelScoreText.Size = new System.Drawing.Size(38, 13);
-            this.labelScoreText.TabIndex = 2;
-            this.labelScoreText.Text = "Score:";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,7 +132,7 @@ namespace GameOfLife
         public System.Windows.Forms.Button btnStep;
         public System.Windows.Forms.Button btnClear;
         public System.Windows.Forms.Button btnRun;
-        private System.Windows.Forms.ComboBox SpeedBox;
+        public System.Windows.Forms.ComboBox SpeedBox;
         public System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.Label labelScoreText;
     }
