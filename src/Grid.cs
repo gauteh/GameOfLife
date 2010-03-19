@@ -108,16 +108,25 @@ namespace GameOfLife
                 p1Width.Y += 10;
             }
 
-            for (m = 0; m < Table.WIDTH; m++)
+            for (m = 0; m < Table.HEIGHT; m++)
             {
-                for (n = 0; n < Table.HEIGHT; n++)
+                for (n = 0; n < Table.WIDTH; n++)
                 {
-                    if (table.Cells[n, m] == 1)
+                    if (table.Cells[m, n] == 1)
                     {
-                        Rectangle c = new Rectangle(px, py, 10, 10);
-                        ge.FillRectangle(bluebrsh, c);
+                        Rectangle a = new Rectangle(pStart.X, p1Start.Y, 10, 10);
+                        x += 10;
+                        ge.FillRectangle(bluebrsh, a);
+                    }
+                    else
+                    {
+                        Rectangle c = new Rectangle(pStart.X + 1, p1Start.Y + 1, 9, 9);
+                        x += 10;
+                        ge.FillRectangle(cleanbrsh, c);
                     }
                 }
+                x = 6;
+                y += 10;
             }
         }
                
