@@ -76,8 +76,7 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
-            int m = 0;
-            int n = 0;
+
 
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
@@ -85,17 +84,24 @@ namespace GameOfLife
             // Ein brush med bakgrunnsfargen til Forma slik at vi kan 'viske' :)
             Brush cleanbrsh = new SolidBrush(mainwindow.BackColor);
 
-
+            /*
             Point pStart = new Point(x, y);
             Point p1Start = new Point(x, y);
             Point pHight = new Point(x, 305);
             Point pWidth = new Point(685, y);
+            */
 
-            for (m = 0; m < Table.HEIGHT; m++)
+            for (int n = 0; n <= Table.WIDTH; n++)
             {
-                for (n = 0; n < Table.WIDTH; n++)
+                Point p1Start = new Point(x, y);
+                Point pWidth = new Point(685, y);
+
+                for (int m = 0; m <= Table.HEIGHT; m++)
                 {
-                    if (table.Cells[m, n] == 1)
+                    Point pStart = new Point(x, y);
+                    Point pHight = new Point(x, 305);
+
+                    if (table.Cells[m,n] == 1)
                     {
                         Rectangle a = new Rectangle(x, y, 10, 10);
                         x += 10;
@@ -104,15 +110,18 @@ namespace GameOfLife
                     else
                     {
                         ge.DrawLine(bluepen, pStart, pHight);
+
                         pStart.X += 10;
                         pHight.X += 10;
 
                         ge.DrawLine(bluepen, p1Start, pWidth);
+
                         p1Start.Y += 10;
                         pWidth.Y += 10;
 
                     }
-                    y += 10;
+                    y = 6;
+                    x += 10;
 
 
                 }
