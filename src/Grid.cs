@@ -76,6 +76,7 @@ namespace GameOfLife
             // ge er teikneområdet på forma som dåke kan teikne på
             int x = 6;
             int y = 6;
+
             Pen bluepen = new Pen(Color.Blue);
             Brush bluebrsh = new SolidBrush(Color.Blue);
 
@@ -110,6 +111,7 @@ namespace GameOfLife
                 pStart.Y += 10;
                 pWidth.Y += 10;
             }
+
 
 
         }
