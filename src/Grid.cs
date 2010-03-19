@@ -82,16 +82,13 @@ namespace GameOfLife
             Brush bluebrsh = new SolidBrush(Color.Blue);
 
             // Ein brush med bakgrunnsfargen til Forma slik at vi kan 'viske' :)
-<<<<<<< HEAD
+
             Brush cleanbrsh = new SolidBrush (mainwindow.BackColor);
 
 
-            for (int m = 0; m < Table.HEIGHT; m++)
-            {
-                
-                for (int n = 0; n < Table.WIDTH; n++)
-=======
-            Brush cleanbrsh = new SolidBrush(mainwindow.BackColor);
+
+
+ 
 
 
             Point pStart = new Point(x, y);
@@ -102,7 +99,7 @@ namespace GameOfLife
 
 
                 for (int m = 0; m < Table.HEIGHT; m++)
->>>>>>> Roger
+
                 {
                     
                     for (int n = 0; n < Table.WIDTH; n++)
