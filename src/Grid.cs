@@ -106,8 +106,8 @@ namespace GameOfLife
                     }
                     else
                     {
-                        Rectangle a = new Rectangle(x, y, 10, 10);
-                        ge.FillRectangle(cleanbrsh, a);
+                        Rectangle c = new Rectangle(x+1, y+1, 9, 9);
+                        ge.FillRectangle(cleanbrsh, c);
                         ge.DrawLine(bluepen, pStart, pHight);
                         ge.DrawLine(bluepen, p1Start, pWidth);
                         x += 10;
