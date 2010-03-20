@@ -56,7 +56,9 @@ namespace GameOfLife
          }
 
         public override int GetScore () {
-            return (maxcells * 100) + Iterations * 10;
+            int i = Iterations - 2;
+            if (i < 0) i = 0;
+            return (maxcells * 100) + i * 10;
         }
 
         public override bool Finished () {
@@ -118,8 +120,17 @@ namespace GameOfLife
         public override void OnGridClick (object sender, Grid.GridEventArgs e) {
             // Kan kun fylle inn dersom spelet ikkje har blitt starta
             if (!game_started) {
-                mainwindow.table.ToggleCell (e.Y, e.X);
-                if (CountActiveCells (mainwindow.table.Cells) >= maxinputcells) {
+                int [,] cells = mainwindow.table.Cells;
+
+                if (cells[e.Y, e.X] == 1) {
+                    mainwindow.table.ToggleCell (e.Y, e.X);
+                } else {
+                    if (CountActiveCells (cells) < maxinputcells)
+                        mainwindow.table.ToggleCell (e.Y, e.X);
+                }
+
+                if (CountActiveCells (cells) >= maxinputcells)
+                {
                     game_ready = true;
                     EnableControls ();
                 } else {
@@ -143,9 +154,9 @@ namespace GameOfLife
         {
             if (!explained) Explain ();
             if (Running) Iterate();
-           
+
             mainwindow.labelScore.Text = Convert.ToString(GetScore());
-            
+
         }
 
         public override void RunButton(object sender, EventArgs e)

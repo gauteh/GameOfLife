@@ -45,9 +45,11 @@ namespace GameOfLife
 
 
             clock = new Timer();
-            clock.Interval = 300;
+            clock.Interval = 1000;
             clock.Start();
-
+           
+            
+            
             // Tooltips
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(this.btnRun, "Starter og stopper");
@@ -63,7 +65,14 @@ namespace GameOfLife
 
         private void SpeedBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //tenke å ordne slik at vi fikk variere farten
+            Console.WriteLine("speedbox" + this.SpeedBox.SelectedIndex.ToString());
+            if (this.SpeedBox.SelectedIndex == 0)
+                clock.Interval = 1000;
+
+            if (this.SpeedBox.SelectedIndex == 1)
+                clock.Interval = 100;
+
+            
         }
     }
 }

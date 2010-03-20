@@ -189,7 +189,7 @@ namespace GameOfLife
                 int ix = Convert.ToInt32 (x);
                 int iy = Convert.ToInt32 (y);
 
-                if (ix < Table.WIDTH || iy < Table.HEIGHT)
+                if (ix < Table.WIDTH && iy < Table.HEIGHT)
                     if (gridClickEvent != null)
                         gridClickEvent(this, new GridEventArgs (iy, ix, e));
             }
