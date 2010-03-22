@@ -42,6 +42,33 @@ namespace GameOfLife
             mainwindow.btnStep.Enabled = true;
         }
 
+        // Klasse som held info om ei 'linje' i Score databasen
+        public class Score {
+            public string type;
+            public string name;
+            public int score;
+
+            public Score (string t, string n, int s) {
+                type = t;
+                name = n;
+                score = s;
+            }
+        }
+
+        public void SaveHighScore (string type, int score) {
+            // Opn form for å få navn
+            // skriv til fil avhengig av type (ie. MaxCells etc etc)
+            // score = poengsummen oppnådd
+            // den her blir overloada i subklassa der den gir seg sjølv som type
+        }
+
+        public Score[] GetHighScore (string type) {
+            // hent score basert på type og returner ein array av 'scores'
+            Score [] s = new Score [5];
+            return s;
+        }
+
+
         public abstract void OnGridClick (object sender, Grid.GridEventArgs e);
 
         public bool Running

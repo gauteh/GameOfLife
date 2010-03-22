@@ -159,6 +159,12 @@ namespace GameOfLife
 
         }
 
+        public void SaveHighScore () {
+            base.SaveHighScore (this.ToString (), GetScore ());
+        }
+
+
+
         public override void RunButton(object sender, EventArgs e)
         {
             if (Running)
