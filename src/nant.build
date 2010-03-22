@@ -62,7 +62,7 @@ Gaute Hope <eg@gaute.vetsj.com> (c) 2010
 
     <target name="zip" depends="release">
       <mkdir dir="${dist.dir}" />
-      <zip zipfile="GameOfLife.zip" ziplevel="9">
+      <zip zipfile="${dist.dir}/GameOfLife.zip" ziplevel="9">
         <fileset basedir="${build.dir}" prefix="GameOfLife" >
           <include name="*.exe" />
         </fileset>
