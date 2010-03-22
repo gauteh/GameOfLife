@@ -24,10 +24,12 @@ Gaute Hope <eg@gaute.vetsj.com> (c) 2010
 
     <target name="debug" depends="clean">
       <property name="debug" value="true" />
+      <call target="build" />
     </target>
 
     <target name="release" depends="clean">
       <property name="debug" value="false" />
+      <call target="build" />
     </target>
 
     <target name="build">
@@ -53,12 +55,12 @@ Gaute Hope <eg@gaute.vetsj.com> (c) 2010
       <exec program="${basename}.exe" basedir="${build.dir}" />
     </target>
 
-    <target name="dist" depends="build">
+    <target name="dist">
       <echo message="Packaging GameOfLife.." />
       <call target="tar" />
     </target>
 
-    <target name="zip" depends="build">
+    <target name="zip" depends="release">
       <mkdir dir="${dist.dir}" />
       <zip zipfile="GameOfLife.zip" ziplevel="9">
         <fileset basedir="${build.dir}" prefix="GameOfLife" >
@@ -67,7 +69,7 @@ Gaute Hope <eg@gaute.vetsj.com> (c) 2010
       </zip>
     </target>
 
-    <target name="tar" depends="build">
+    <target name="tar" depends="release">
       <mkdir dir="${dist.dir}" />
       <tar destfile="${dist.dir}/GameOfLife.tar.bz2" compression="BZip2">
         <fileset basedir="${build.dir}" filemode="755" prefix="GameOfLife" >
