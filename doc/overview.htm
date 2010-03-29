@@ -43,6 +43,21 @@
         width: 100%;
       }
 
+      .infobox {
+        margin: 30px;
+        width: 600px;
+        background: #4c84d9;
+        border: 1px solid black;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 23px;
+        color: black;
+        font-weight: bold;
+        margin: 0px;
+      }
+
     </style>
   </head>
   <body>
@@ -51,19 +66,23 @@
 
     <div id="intro">
       <img src="screenshots/glider.png" class="left"></img>
-      <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Game of Life</a> er eit spel oppfunne av <a href="http://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a> i 1970. Det er eit spel som skal likne på celledeling i naturen og du spelar ved å sette opp kvar cellen skal være og dei følger sine reglar etter kvart som det går ein itereasjon eller generasjon framover.
+      <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Game of Life</a> er eit spel oppfunne av <a href="http://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a> i 1970. Det er eit spel som skal likne på celledeling i naturen; <b>og du spelar</b> ved å sette opp kvar cellen skal være - deretter startar du spelet og <em>dei vil følge reglane for kvar generasjon (iterasjon) som går.</em>
     </div>
     <div class="clear"></div>
 
     <div id="contents">
-      Dei fire reglane er:<br />
-      <b>
-        1. Ei kvar celle med færre enn to levande naboar dør, som følge av underpopulasjon.<br />
-        2. Ei kvar celle med fleire enn tre levande naboar dør, som følge av overpopulasjon.<br />
-        3. Ei kvar celle med to eller tre levande naboar leve vidare til neste generasjon.<br/>
-        4. Ei kvar celle med nøyaktig tre levande naboar blir levande.<br />
-      </b>
-      <img src="screenshots/example_maxcells.png"></img>
+      <div class="infobox">
+        <h2>Dei fire reglane er:</h2><br />
+        <ol>
+          <li>Ei kvar celle med <em>færre enn to levande naboar</em> dør, som følge av underpopulasjon.</li>
+          <li>Ei kvar celle med <em>fleire enn tre levande naboar</em> dør, som følge av overpopulasjon.</li>
+          <li>Ei kvar celle med <em>to eller tre levande naboar</em> leve vidare til neste generasjon.</li>
+          <li>Ei kvar celle med <em>nøyaktig tre levande naboar</em> blir levande.</li>
+        </ol>
+      </div>
+      <br />
+
+      <img width="600" src="screenshots/example_maxcells.png"></img>
     </div>
 
   </body>
