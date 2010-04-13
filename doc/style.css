@@ -1,0 +1,92 @@
+body {
+  width: 800px;
+  font-size: 17px;
+}
+
+#header {
+  font-size: 30px;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+#authors {
+  color: gray;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#intro {
+  width: 80%;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  border-left: 4px solid gray;
+  padding-left: 10px;
+}
+
+#intro img {
+  float: left;
+  width: 60px;
+}
+
+#intro #text {
+  width: 550px;
+  float: left;
+  margin-left: 10px;
+}
+
+.clear {
+  clear: both;
+}
+
+.left {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#contents {
+  margin-top: 5px;
+  margin-left: 30px;
+  width: 80%;
+}
+
+.infobox {
+  margin: 5px;
+  width: 600px;
+  background: #939fa3;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.infobox ul {
+  list-style-type: none;
+  margin-left: 0px;
+  padding: 0px;
+}
+
+.infobox ul li {
+  margin-left: 0px;
+  padding: 0px;
+  font-size: 18px;
+  margin-bottom: 4px;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 23px;
+  color: black;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.nb {
+  font-size: 18px;
+  display: block;
+  color: gray;
+  border-left: 4px solid gray;
+  padding-left: 10px;
+}
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="no" lang="no">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Game Of Life</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="header">Game of Life</div>
+    <div id="authors">Eit prosjekt av Trond K. Homestad, Roger Rikstad, Øyvind Hovden og Gaute Hope</div>
+
+    <div id="intro">
+      <img src="screenshots/glider.png"></img>
+
+      <div id="text">
+        <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Game of Life</a> er eit spel som skal likne på celledeling i naturen; og du spelar ved å sette opp kvar cellen skal være - deretter startar du spelet og <em>dei vil følge reglane for kvar generasjon (iterasjon) som går.</em> Det blir derfor kalla eit non-player spel, det vart oppfunne av <a href="http://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a> i 1970, men prinsippa og matematikken bak det som Game of Life er eit eksempel på; <a href="http://en.wikipedia.org/wiki/Cellular_automaton">Cellular automaton</a> er eldre.
+      </div>
+
+    <div class="clear"></div>
+    </div>
+
+
+    <div id="contents">
+      <div class="infobox">
+        <h2>Dei fire reglane er:</h2><br />
+        <ul>
+          <li>Ei kvar celle med <em>færre enn to levande naboar</em> dør, som følge av underpopulasjon.</li>
+          <li>Ei kvar celle med <em>fleire enn tre levande naboar</em> dør, som følge av overpopulasjon.</li>
+          <li>Ei kvar celle med <em>to eller tre levande naboar</em> leve vidare til neste generasjon.</li>
+          <li>Ei kvar celle med <em>nøyaktig tre levande naboar</em> blir levande.</li>
+        </ul>
+      </div>
+      <p>Målet er å lage fleire spel med desse reglane, men foreløpig finst det kun eitt; <a href="http://eple.thruhere.net/~gaute/git/gameoflife.git/tree/src/Games/MaxCells.cs">MaxCells</a>. Her får du <strong>15</strong> celler som du må plassere ut, deretter startar du spelet. Du skorar poeng avhengig av det høgaste <strong>antalle celler i live</strong> på ein gang og <strong>antall iterasjonar</strong> som oppsettet ditt går før det dør ut. For å starte eit nytt spel velg <em>Clear</em>.</p>
+
+      <p>Eit eksempel kan være å teikne opp noko slikt:
+      <div>
+        <a href="screenshots/maxcells_start.png"><img class="left" width="400" src="screenshots/maxcells_start.png"></img></a>
+        Velg <em>Run</em>, organismen eller oppsettet ditt vil raskt utvikle seg og du kan følge med på poengsummen ettersom det blir fleire og fleire celler - og ettersom generasjonane (eller iterasjonane) går.
+      </div>
+      <div class="clear"></div>
+      <div>
+        <a href="screenshots/maxcells_progress.png">
+        <img class="left" width="400" src="screenshots/maxcells_progress.png"></img>
+      </a>
+        Til slutt vil systemet bli stabilt og ende opp i former som i henhald til reglane ikkje skal forandre seg, til dømes kvadratet med fire celle, og dei andre formene du ser på neste bilete.<br />
+      </div>
+      <div class="clear"></div>
+      <div>
+        <a href="screenshots/maxcells_finished.png">
+        <img class="left" width="400" src="screenshots/maxcells_finished.png"></img>
+      </a>
+        Ferdig! Score: 13380.
+      </div>
+      <div class="clear"></div>
+      </p>
+      <p class="nb">MaxCells forsøker på å oppdage system som gjentar seg sjølv, dette kan vi kun gjere til ei viss grad sidan det i teorien kan være uendeleg lengde (i itereasjonar) på perioden - det er derfor mogleg å lage eit system som går evig og vil gje deg ein uendeleg poengsum!</p>
+      <br />
+
+      <h3>Kode / Lisens / Bugs</h3>
+      <p>Game of Life er skreve i C#, og fungerar på Windows og Linux. Koden kan hentast ved hjelp av <a href="http://git-scm.com/">git</a> på <a href="http://eple.thruhere.net/~gaute/git/gameoflife.git/">http://eple.thruhere.net/~gaute/git/gameoflife.git/</a> eller som pakka filer:<br />
+      <br />
+      <b>Siste stabile versjon:</b> <a href="http://eple.thruhere.net/~gaute/git/gameoflife.git/snapshot/gameoflife-0.2.3.zip">zip</a> | <a href="http://eple.thruhere.net/~gaute/git/gameoflife.git/snapshot/gameoflife-0.2.3.tar.bz2">tar.bz2</a><br />
+      <b>Siste ustabile kode:</b> <a href="http://eple.thruhere.net/~gaute/git/gameoflife.git/snapshot/gameoflife-master.zip">zip</a> | <a href="http://eple.thruhere.net/~gaute/git/gameoflife.git/snapshot/gameoflife-master.tar.bz2">tar.bz2</a><br />
+      <br />
+      Den kan kompilerast ved hjelp av Microsoft Visual C#, MonoDevelop eller nant.<br />
+      <br />
+      Game of Life er lisensiert under: ?? [CC-non-profit?] [AS-IS] [All-rights-reserverd?] [GPL?]<br/><br />
+      <strong>Bugs:</strong> Send feil du måtte finne til <a href="mailto:??">??</a>.
+      </p>
+
+    </div>
+
+  </body>
+</html>
+
