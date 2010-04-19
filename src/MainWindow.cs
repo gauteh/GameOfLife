@@ -55,7 +55,8 @@ namespace GameOfLife
             toolTip1.SetToolTip(this.btnRun, "Starter og stopper");
 
             // Setter opp eit nytt spel av typen 'MaxCells'
-            game = new MaxCells (this);
+            // game = new MaxCells (this);
+            game = new Sandbox (this);
         }
 
         public void OnTableChanged () {

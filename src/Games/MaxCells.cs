@@ -25,9 +25,6 @@ namespace GameOfLife
 
         private const int maxinputcells = 15;
 
-        private int maxcells = 0; // maksimale nummer av celler som har
-                                  // vore til stade samtidig
-
         private int[,] ppreviouscells;
         private int[,] previouscells;
 
@@ -138,16 +135,6 @@ namespace GameOfLife
                     DisableControls ();
                 }
             }
-        }
-
-        private int CountActiveCells (int [,] cells) {
-            int activecells = 0;
-
-            for (int y = 0; y < Table.HEIGHT; y++)
-              for (int x = 0; x < Table.WIDTH; x++)
-                if (cells[y, x] == 1) activecells++;
-
-            return activecells;
         }
 
         public override void Tick(object sender,EventArgs eArgs)

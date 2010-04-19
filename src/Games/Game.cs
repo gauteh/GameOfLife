@@ -8,6 +8,8 @@ namespace GameOfLife
         public MainWindow mainwindow;
         private bool running = false;
         protected int iterations = 0;
+        protected int maxcells = 0; // maksimale nummer av celler som har
+                                  // vore til stade samtidig
 
 
         public Game (MainWindow m) {
@@ -40,6 +42,16 @@ namespace GameOfLife
             mainwindow.btnRun.Enabled = true;
             mainwindow.btnClear.Enabled = true;
             mainwindow.btnStep.Enabled = true;
+        }
+
+         public int CountActiveCells (int [,] cells) {
+            int activecells = 0;
+
+            for (int y = 0; y < Table.HEIGHT; y++)
+              for (int x = 0; x < Table.WIDTH; x++)
+                if (cells[y, x] == 1) activecells++;
+
+            return activecells;
         }
 
         public abstract void OnGridClick (object sender, Grid.GridEventArgs e);
