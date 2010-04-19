@@ -11,7 +11,7 @@
     <div id="authors">Eit prosjekt av Trond K. Homestad, Roger Rikstad, Øyvind Hovden og Gaute Hope</div>
 
     <div id="intro">
-      <img src="screenshots/glider.png"></img>
+      <img alt="Glider" src="screenshots/glider.png"></img>
 
       <div id="text">
         <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Game of Life</a> er eit spel som skal likne på celledeling i naturen; og du spelar ved å sette opp kvar cellen skal være - deretter startar du spelet og <em>dei vil følge reglane for kvar generasjon (iterasjon) som går.</em> Det blir derfor kalla eit non-player spel, det vart oppfunne av <a href="http://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a> i 1970, men prinsippa og matematikken bak det som Game of Life er eit eksempel på; <a href="http://en.wikipedia.org/wiki/Cellular_automaton">Cellular automaton</a> er eldre.
@@ -33,27 +33,26 @@
       </div>
       <p>Målet er å lage fleire spel med desse reglane, men foreløpig finst det kun eitt; <a href="http://eple.thruhere.net/~gaute/git/gameoflife.git/tree/src/Games/MaxCells.cs">MaxCells</a>. Her får du <strong>15</strong> celler som du må plassere ut, deretter startar du spelet. Du skorar poeng avhengig av det høgaste <strong>antalle celler i live</strong> på ein gang og <strong>antall iterasjonar</strong> som oppsettet ditt går før det dør ut. For å starte eit nytt spel velg <em>Clear</em>.</p>
 
-      <p>Eit eksempel kan være å teikne opp noko slikt:
+      <p>Eit eksempel kan være å teikne opp noko slikt:</p>
       <div>
-        <a href="screenshots/maxcells_start.png"><img class="left" width="400" src="screenshots/maxcells_start.png"></img></a>
+        <a href="screenshots/maxcells_start.png"><img alt="Maxcells: start" class="left" width="400" src="screenshots/maxcells_start.png"></img></a>
         Velg <em>Run</em>, organismen eller oppsettet ditt vil raskt utvikle seg og du kan følge med på poengsummen ettersom det blir fleire og fleire celler - og ettersom generasjonane (eller iterasjonane) går.
       </div>
       <div class="clear"></div>
       <div>
         <a href="screenshots/maxcells_progress.png">
-        <img class="left" width="400" src="screenshots/maxcells_progress.png"></img>
+        <img class="left" width="400" alt="Maxcells: progress" src="screenshots/maxcells_progress.png"></img>
       </a>
         Til slutt vil systemet bli stabilt og ende opp i former som i henhald til reglane ikkje skal forandre seg, til dømes kvadratet med fire celle, og dei andre formene du ser på neste bilete.<br />
       </div>
       <div class="clear"></div>
       <div>
         <a href="screenshots/maxcells_finished.png">
-        <img class="left" width="400" src="screenshots/maxcells_finished.png"></img>
+        <img class="left" width="400" alt="Maxcells: finished" src="screenshots/maxcells_finished.png"></img>
       </a>
-        Ferdig! Score: 13380.
+        Ferdig! Score: 19340.
       </div>
       <div class="clear"></div>
-      </p>
       <p class="nb">MaxCells forsøker på å oppdage system som gjentar seg sjølv, dette kan vi kun gjere til ei viss grad sidan det i teorien kan være uendeleg lengde (i itereasjonar) på perioden - det er derfor mogleg å lage eit system som går evig og vil gje deg ein uendeleg poengsum!</p>
       <br />
 
